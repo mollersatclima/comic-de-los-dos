@@ -2,14 +2,15 @@
 
 import { Character } from "@/components/comic/character";
 import { Scene } from "@/components/comic/scenes";
-import type { Cast, ComicPanel } from "@/lib/comic";
-import { fill } from "@/lib/comic";
+import type { Cast, ComicPanel, Lang } from "@/lib/comic";
+import { say, t } from "@/lib/i18n";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 
 export function PanelView({
   panel,
   cast,
+  lang,
   edits,
   editingAll,
   activeBubble,
@@ -19,6 +20,7 @@ export function PanelView({
 }: {
   panel: ComicPanel;
   cast: Cast;
+  lang: Lang;
   edits: Record<string, string>;
   editingAll: boolean;
   activeBubble: string | null;
@@ -39,15 +41,16 @@ export function PanelView({
       <div className="relative z-20 flex flex-col gap-2 px-3 pt-3">
         {panel.caption && (
           <figcaption className="max-w-full self-start border-[3px] border-ink bg-comic-yellow px-2.5 py-1 font-comic text-[15px] leading-snug font-bold text-ink shadow-[3px_3px_0_#1b2a4a]">
-            {fill(panel.caption, cast)}
+            {say(lang, panel.caption, cast)}
           </figcaption>
         )}
         <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
           {childBubble && (
             <Speech
-              name={fill("{{child}}", cast)}
-              text={edits[childBubble.id] ?? fill(childBubble.text, cast)}
+              name={say(lang, "{{child}}", cast)}
+              text={edits[childBubble.id] ?? say(lang, childBubble.text, cast)}
               side="left"
+              lang={lang}
               editing={editingAll || activeBubble === childBubble.id}
               onActivate={() => onActivate(childBubble.id)}
               onChange={(value) => onChange(childBubble.id, value)}
@@ -55,9 +58,10 @@ export function PanelView({
           )}
           {parentBubble && (
             <Speech
-              name={fill("{{parent}}", cast)}
-              text={edits[parentBubble.id] ?? fill(parentBubble.text, cast)}
+              name={say(lang, "{{parent}}", cast)}
+              text={edits[parentBubble.id] ?? say(lang, parentBubble.text, cast)}
               side="right"
+              lang={lang}
               editing={editingAll || activeBubble === parentBubble.id}
               onActivate={() => onActivate(parentBubble.id)}
               onChange={(value) => onChange(parentBubble.id, value)}
@@ -66,7 +70,7 @@ export function PanelView({
         </div>
         {panel.sfx && (
           <p className="sfx-stroke pointer-events-none relative z-30 -mb-5 text-center font-display text-[2rem] leading-none text-comic-red">
-            {panel.sfx}
+            {say(lang, panel.sfx, cast)}
           </p>
         )}
       </div>
@@ -102,6 +106,7 @@ function Speech({
   name,
   text,
   side,
+  lang,
   editing,
   onActivate,
   onChange,
@@ -109,6 +114,7 @@ function Speech({
   name: string;
   text: string;
   side: "left" | "right";
+  lang: Lang;
   editing: boolean;
   onActivate: () => void;
   onChange: (value: string) => void;
@@ -135,7 +141,7 @@ function Speech({
             onChange={(event) => onChange(event.target.value)}
             maxLength={160}
             rows={3}
-            aria-label={`Lo que dice ${name}`}
+            aria-label={`${t(lang, "saysOf")} ${name}`}
             className="mt-1 min-h-16 resize-none border-ink bg-sheet font-comic text-base font-bold text-ink"
           />
         ) : (
@@ -145,7 +151,7 @@ function Speech({
             className="mt-0.5 block w-full rounded-md text-left font-comic text-[15px] leading-snug font-bold text-ink focus-visible:ring-3 focus-visible:ring-comic-red/40 sm:text-base"
           >
             {text}
-            <span className="sr-only">Toca para cambiar esta frase</span>
+            <span className="sr-only">{t(lang, "tapToEdit")}</span>
           </button>
         )}
         <span

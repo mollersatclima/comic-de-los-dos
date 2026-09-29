@@ -91,12 +91,15 @@ export type Cast = {
 
 export type Step = "taller" | "aventura" | "lectura";
 
+export type Lang = "pt" | "es";
+
 export type ComicState = {
   cast: Cast;
   storyId: string;
   step: Step;
   pageIndex: number;
   edits: Record<string, string>;
+  lang: Lang;
 };
 
 export const HAIR = [
@@ -125,7 +128,7 @@ export const FAVORITES = [
   { id: "cuentos", phrase: "los cuentos" },
 ] as const;
 
-const STORAGE_KEY = "comic-de-los-dos-v3";
+const STORAGE_KEY = "comic-de-los-dos-v4";
 const STORAGE_EVENT = "comic-de-los-dos-change";
 
 export function defaultCast(): Cast {
@@ -148,6 +151,7 @@ export function defaultState(): ComicState {
     step: "lectura",
     pageIndex: -1,
     edits: {},
+    lang: "pt",
   };
 }
 
@@ -155,29 +159,46 @@ const SERVER_SNAPSHOT = defaultState();
 let cachedRaw: string | undefined;
 let cachedState: ComicState = SERVER_SNAPSHOT;
 
-export function displayChild(name: string) {
-  const trimmed = name.trim();
-  return trimmed.length > 0 ? trimmed : "tu hija";
+const FAVORITE_PT: Record<string, string> = {
+  Stitch: "Stitch",
+  "las estrellas": "as estrelas",
+  "las galletas": "os biscoitos",
+  "los dinosaurios": "os dinossauros",
+  "el mar": "o mar",
+  "los gatos": "os gatos",
+  "los cuentos": "as histórias",
+};
+
+export function favoritePhrase(phrase: string, lang: Lang) {
+  if (lang === "es") return phrase;
+  return FAVORITE_PT[phrase] ?? phrase;
 }
 
-export function displayParent(name: string, role: Role) {
+export function displayChild(name: string, lang: Lang = "pt") {
   const trimmed = name.trim();
   if (trimmed.length > 0) return trimmed;
-  return role === "mama" ? "mamá" : "papá";
+  return lang === "pt" ? "sua filha" : "tu hija";
 }
 
-export function roleWord(role: Role, capital = false) {
-  const word = role === "mama" ? "mamá" : "papá";
+export function displayParent(name: string, role: Role, lang: Lang = "pt") {
+  const trimmed = name.trim();
+  if (trimmed.length > 0) return trimmed;
+  return roleWord(role, false, lang);
+}
+
+export function roleWord(role: Role, capital = false, lang: Lang = "pt") {
+  const word =
+    lang === "pt" ? (role === "mama" ? "mamãe" : "papai") : role === "mama" ? "mamá" : "papá";
   return capital ? word.charAt(0).toUpperCase() + word.slice(1) : word;
 }
 
-export function fill(text: string, cast: Cast) {
+export function fill(text: string, cast: Cast, lang: Lang = "pt") {
   const map: Record<string, string> = {
-    "{{child}}": displayChild(cast.childName),
-    "{{parent}}": displayParent(cast.parentName, cast.role),
-    "{{role}}": roleWord(cast.role),
-    "{{Role}}": roleWord(cast.role, true),
-    "{{favorite}}": cast.favorite,
+    "{{child}}": displayChild(cast.childName, lang),
+    "{{parent}}": displayParent(cast.parentName, cast.role, lang),
+    "{{role}}": roleWord(cast.role, false, lang),
+    "{{Role}}": roleWord(cast.role, true, lang),
+    "{{favorite}}": favoritePhrase(cast.favorite, lang),
   };
   return text.replace(
     /\{\{(child|parent|role|Role|favorite)\}\}/g,
@@ -194,6 +215,7 @@ function parseComic(raw: string): ComicState {
       ...parsed,
       cast: { ...defaultCast(), ...parsed.cast },
       edits: parsed.edits ?? {},
+      lang: parsed.lang === "es" ? "es" : "pt",
     };
   } catch {
     return defaultState();

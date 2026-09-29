@@ -8,11 +8,12 @@ import { Button } from "@/components/ui/button";
 import {
   displayChild,
   displayParent,
-  fill,
   type Cast,
   type ComicPanel,
+  type Lang,
   type Story,
 } from "@/lib/comic";
+import { say, t } from "@/lib/i18n";
 import { STORIES } from "@/lib/stories";
 
 type Slide = {
@@ -27,15 +28,17 @@ type Slide = {
 export function VideoPlayer({
   cast,
   story,
+  lang,
   edits,
   onClose,
 }: {
   cast: Cast;
   story: Story;
+  lang: Lang;
   edits: Record<string, string>;
   onClose: () => void;
 }) {
-  const slides = useMemo(() => buildSlides(story, cast, edits), [story, cast, edits]);
+  const slides = useMemo(() => buildSlides(story, cast, lang, edits), [story, cast, lang, edits]);
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(true);
   const [voice, setVoice] = useState(false);
@@ -55,9 +58,9 @@ export function VideoPlayer({
       window.speechSynthesis?.cancel();
       return;
     }
-    speak(slide.speech);
+    speak(slide.speech, t(lang, "speechLang"));
     return () => window.speechSynthesis?.cancel();
-  }, [voice, playing, slide.speech]);
+  }, [voice, playing, slide.speech, lang]);
 
   useEffect(() => {
     function onKey(event: KeyboardEvent) {
@@ -105,13 +108,13 @@ export function VideoPlayer({
       className="fixed inset-0 z-50 flex flex-col bg-paper text-ink"
       role="dialog"
       aria-modal="true"
-      aria-label={`Video de ${story.title}`}
+      aria-label={`${t(lang, "videoOf")} ${say(lang, story.title, cast)}`}
     >
       <button
         type="button"
         className="relative flex min-h-0 flex-1 items-center justify-center px-3 py-4 sm:px-8"
         onClick={() => setChrome(true)}
-        aria-label="Mostrar los controles"
+        aria-label={t(lang, "showControls")}
       >
         <div className="w-full max-w-3xl">
           {slide.kind === "panel" && slide.panel ? (
@@ -119,6 +122,7 @@ export function VideoPlayer({
               <PanelView
                 panel={slide.panel}
                 cast={cast}
+                lang={lang}
                 edits={edits}
                 editingAll={false}
                 activeBubble={null}
@@ -128,7 +132,7 @@ export function VideoPlayer({
               />
             </div>
           ) : (
-            <TitleSlide cast={cast} story={story} end={slide.kind === "end"} />
+            <TitleSlide cast={cast} story={story} lang={lang} end={slide.kind === "end"} />
           )}
         </div>
       </button>
@@ -153,7 +157,7 @@ export function VideoPlayer({
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <Button type="button" className="h-10 font-display" onClick={() => setPlaying((value) => !value)}>
-              {playing ? "Pausa" : "Seguir"}
+              {playing ? t(lang, "pause") : t(lang, "resume")}
             </Button>
             <Button
               type="button"
@@ -162,7 +166,7 @@ export function VideoPlayer({
               onClick={() => setIndex((current) => Math.max(0, current - 1))}
               disabled={index === 0}
             >
-              Anterior
+              {t(lang, "previous")}
             </Button>
             <Button
               type="button"
@@ -171,7 +175,7 @@ export function VideoPlayer({
               onClick={() => setIndex((current) => Math.min(slides.length - 1, current + 1))}
               disabled={index >= slides.length - 1}
             >
-              Siguiente
+              {t(lang, "next")}
             </Button>
             <Button
               type="button"
@@ -180,7 +184,7 @@ export function VideoPlayer({
               aria-pressed={voice}
               onClick={() => setVoice((value) => !value)}
             >
-              {voice ? "Voz encendida" : "Poner voz"}
+              {voice ? t(lang, "voiceOn") : t(lang, "voiceOff")}
             </Button>
             <Button
               type="button"
@@ -188,7 +192,7 @@ export function VideoPlayer({
               className="h-10 border-[3px] border-ink bg-white font-comic"
               onClick={() => void fillScreen()}
             >
-              Grabar en grande
+              {t(lang, "recordBig")}
             </Button>
             <Button
               type="button"
@@ -196,11 +200,11 @@ export function VideoPlayer({
               className="h-10 font-comic"
               onClick={close}
             >
-              Volver al cómic
+              {t(lang, "backToComic")}
             </Button>
           </div>
           <p className="font-comic text-sm text-muted-foreground">
-            Si esta versión te gusta, ponla en grande y grábala con la pantalla del celular o de la computadora. La voz es opcional.
+            {t(lang, "ifYouLike")}
           </p>
         </div>
       </div>
@@ -211,10 +215,12 @@ export function VideoPlayer({
 function TitleSlide({
   cast,
   story,
+  lang,
   end,
 }: {
   cast: Cast;
   story: Story;
+  lang: Lang;
   end: boolean;
 }) {
   const issue = STORIES.findIndex((item) => item.id === story.id) + 1;
@@ -225,13 +231,13 @@ function TitleSlide({
       <div className="relative z-20 px-4 pt-6 text-center">
         <div className="mx-auto max-w-md border-[3px] border-ink bg-sheet/95 px-4 py-4 shadow-[4px_4px_0_#1b2a4a]">
           <p className="font-comic text-xs font-bold tracking-[0.16em] uppercase">
-            {end ? "Así termina" : `N.º ${issue} · para ver juntos`}
+            {end ? t(lang, "endsLike") : `N.º ${issue} · ${t(lang, "toWatch")}`}
           </p>
           <h2 className="mt-1 font-display text-4xl leading-none text-balance sm:text-5xl">
-            {end ? "Fin" : story.title}
+            {end ? t(lang, "end") : say(lang, story.title, cast)}
           </h2>
           <p className="mt-2 font-comic text-lg font-bold">
-            {displayChild(cast.childName)} y {displayParent(cast.parentName, cast.role)}
+            {displayChild(cast.childName, lang)} {t(lang, "and")} {displayParent(cast.parentName, cast.role, lang)}
           </p>
         </div>
       </div>
@@ -266,24 +272,25 @@ function TitleSlide({
   );
 }
 
-function buildSlides(story: Story, cast: Cast, edits: Record<string, string>): Slide[] {
-  const names = `${displayChild(cast.childName)} y ${displayParent(cast.parentName, cast.role)}`;
+function buildSlides(story: Story, cast: Cast, lang: Lang, edits: Record<string, string>): Slide[] {
+  const names = `${displayChild(cast.childName, lang)} ${t(lang, "and")} ${displayParent(cast.parentName, cast.role, lang)}`;
+  const title = say(lang, story.title, cast);
   const panels = story.pages.flatMap((page) => page.panels);
   const cover: Slide = {
     id: "cover",
     kind: "cover",
     ms: 6500,
-    label: "Portada",
-    speech: `${story.title}. Las aventuras de ${names}.`,
+    label: t(lang, "cover"),
+    speech: `${title}. ${t(lang, "adventuresOf")} ${names}.`,
   };
   const frames: Slide[] = panels.map((panel, position) => {
-    const spoken = spokenPanel(panel, cast, edits);
+    const spoken = spokenPanel(panel, cast, lang, edits);
     return {
       id: panel.id,
       kind: "panel",
       panel,
       ms: Math.min(16000, Math.max(7000, 2400 + spoken.length * 68)),
-      label: `Viñeta ${position + 1} de ${panels.length}`,
+      label: `${t(lang, "panel")} ${position + 1} ${t(lang, "of")} ${panels.length}`,
       speech: spoken,
     };
   });
@@ -291,33 +298,36 @@ function buildSlides(story: Story, cast: Cast, edits: Record<string, string>): S
     id: "end",
     kind: "end",
     ms: 7000,
-    label: "Fin",
-    speech: `Fin. ${story.title}, de ${names}.`,
+    label: t(lang, "end"),
+    speech: `${t(lang, "end")}. ${title}, ${t(lang, "ofNames")} ${names}.`,
   };
   return [cover, ...frames, end];
 }
 
-function spokenPanel(panel: ComicPanel, cast: Cast, edits: Record<string, string>) {
+function spokenPanel(panel: ComicPanel, cast: Cast, lang: Lang, edits: Record<string, string>) {
   const lines = [
-    panel.caption ? fill(panel.caption, cast) : "",
+    panel.caption ? say(lang, panel.caption, cast) : "",
     ...panel.bubbles.map((bubble) => {
-      const name = bubble.speaker === "child" ? displayChild(cast.childName) : displayParent(cast.parentName, cast.role);
-      const text = edits[bubble.id] ?? fill(bubble.text, cast);
-      return `${name} dice: ${text}`;
+      const name =
+        bubble.speaker === "child"
+          ? displayChild(cast.childName, lang)
+          : displayParent(cast.parentName, cast.role, lang);
+      const text = edits[bubble.id] ?? say(lang, bubble.text, cast);
+      return `${name} ${t(lang, "says")}: ${text}`;
     }),
   ];
   return lines.filter(Boolean).join(". ");
 }
 
-function speak(text: string) {
+function speak(text: string, speechLang: string) {
   if (typeof window === "undefined" || !window.speechSynthesis) return;
   window.speechSynthesis.cancel();
   const utterance = new SpeechSynthesisUtterance(text);
-  utterance.lang = "es-MX";
+  utterance.lang = speechLang;
   utterance.rate = 0.92;
   const voice = window.speechSynthesis
     .getVoices()
-    .find((item) => item.lang.toLowerCase().startsWith("es"));
+    .find((item) => item.lang.toLowerCase().startsWith(speechLang.slice(0, 2)));
   if (voice) utterance.voice = voice;
   window.speechSynthesis.speak(utterance);
 }

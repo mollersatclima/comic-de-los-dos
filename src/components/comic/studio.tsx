@@ -26,6 +26,7 @@ import {
   displayChild,
   displayParent,
   emptySubscribe,
+  favoritePhrase,
   readComic,
   roleWord,
   serverComic,
@@ -34,8 +35,10 @@ import {
   writeComic,
   type Cast,
   type ComicState,
+  type Lang,
   type SceneId,
 } from "@/lib/comic";
+import { optionLabel, say, t } from "@/lib/i18n";
 import { STORIES, getStory } from "@/lib/stories";
 import { cn } from "@/lib/utils";
 
@@ -44,6 +47,13 @@ export function Studio() {
   const state = useSyncExternalStore(subscribeComic, readComic, serverComic);
   const [editingAll, setEditingAll] = useState(false);
   const [activeBubble, setActiveBubble] = useState<string | null>(null);
+
+  const lang = state.lang === "es" ? "es" : "pt";
+
+  useEffect(() => {
+    document.documentElement.lang = lang === "pt" ? "pt-BR" : "es";
+    document.title = t(lang, "title");
+  }, [lang]);
 
   useEffect(() => {
     function onKey(event: KeyboardEvent) {
@@ -106,7 +116,7 @@ export function Studio() {
   if (!ready) {
     return (
       <div className="grid min-h-dvh place-items-center px-6">
-        <p className="font-display text-2xl text-ink">Abriendo el cuaderno…</p>
+        <p className="font-display text-2xl text-ink">Abrindo o caderno…</p>
       </div>
     );
   }
@@ -120,15 +130,35 @@ export function Studio() {
           className="text-left"
         >
           <span className="block font-display text-2xl leading-none tracking-wide whitespace-nowrap">
-            Cómic de los dos
+            {t(lang, "title")}
           </span>
-          <span className="font-comic text-sm text-muted-foreground">
-            Dibujada suavecito, al estilo de Stitch
-          </span>
+          <span className="font-comic text-sm text-muted-foreground">{t(lang, "tagline")}</span>
         </button>
-        <div className="flex items-center gap-2">
-          <HowToRead />
-          <ResetDialog onReset={resetAll} />
+        <div className="flex flex-wrap items-center gap-2">
+          <div className="flex overflow-hidden border-[3px] border-ink" role="group" aria-label={t(lang, "language")}>
+            {(
+              [
+                ["pt", "PT"],
+                ["es", "ES"],
+              ] as const
+            ).map(([code, label]) => (
+              <button
+                key={code}
+                type="button"
+                aria-pressed={lang === code}
+                aria-label={code === "pt" ? t(lang, "portuguese") : t(lang, "spanish")}
+                onClick={() => patch({ lang: code })}
+                className={cn(
+                  "h-10 px-3 font-display text-sm",
+                  lang === code ? "bg-comic-navy text-white" : "bg-white",
+                )}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+          <HowToRead lang={lang} />
+          <ResetDialog lang={lang} onReset={resetAll} />
         </div>
       </header>
 
@@ -136,6 +166,7 @@ export function Studio() {
         {state.step === "taller" && (
           <Setup
             cast={state.cast}
+            lang={lang}
             namesReady={namesReady}
             onCast={patchCast}
             onContinue={() =>
@@ -153,6 +184,7 @@ export function Studio() {
         {state.step === "aventura" && (
           <Picker
             cast={state.cast}
+            lang={lang}
             onBack={() => patch({ step: "taller" })}
             onPick={(storyId) =>
               patch({ storyId, step: "lectura", pageIndex: -1 })
@@ -198,18 +230,20 @@ export function Studio() {
 
 function Setup({
   cast,
+  lang,
   namesReady,
   onCast,
   onContinue,
 }: {
   cast: Cast;
+  lang: Lang;
   namesReady: boolean;
   onCast: (partial: Partial<Cast>) => void;
   onContinue: () => void;
 }) {
   return (
     <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
-      <CoverCard cast={cast} title="Las aventuras de hoy" kicker="N.º 0 · Portada" />
+      <CoverCard cast={cast} lang={lang} title={t(lang, "today")} kicker={t(lang, "coverKicker")} />
       <form
         className="space-y-6 border-[3px] border-ink bg-sheet p-4 shadow-[6px_6px_0_#1b2a4a] sm:p-6"
         onSubmit={(event) => {
@@ -218,20 +252,17 @@ function Setup({
         }}
       >
         <div>
-          <h1 className="font-display text-4xl leading-none">Vamos a dibujarlos</h1>
-          <p className="mt-2 font-comic text-lg leading-snug">
-            Cuéntame quiénes son. Después eligen una aventura y, si una frase no
-            les suena, la cambian. El cómic queda de ustedes dos.
-          </p>
+          <h1 className="font-display text-4xl leading-none">{t(lang, "draw")}</h1>
+          <p className="mt-2 font-comic text-lg leading-snug">{t(lang, "drawBody")}</p>
         </div>
 
         <fieldset className="space-y-2">
-          <legend className="font-display text-sm tracking-wide">Quién cuenta contigo</legend>
-          <div className="grid grid-cols-2 gap-2" role="radiogroup" aria-label="Quién cuenta la historia">
+          <legend className="font-display text-sm tracking-wide">{t(lang, "who")}</legend>
+          <div className="grid grid-cols-2 gap-2" role="radiogroup" aria-label={t(lang, "whoLabel")}>
             {(
               [
-                ["mama", "Soy mamá"],
-                ["papa", "Soy papá"],
+                ["mama", t(lang, "imMom")],
+                ["papa", t(lang, "imDad")],
               ] as const
             ).map(([role, label]) => (
               <button
@@ -254,7 +285,7 @@ function Setup({
         <div className="grid gap-4 sm:grid-cols-2">
           <div className="space-y-2">
             <Label htmlFor="parent-name" className="font-display">
-              Tu nombre
+              {t(lang, "yourName")}
             </Label>
             <Input
               id="parent-name"
@@ -267,7 +298,7 @@ function Setup({
           </div>
           <div className="space-y-2">
             <Label htmlFor="child-name" className="font-display">
-              El nombre de tu hija
+              {t(lang, "herName")}
             </Label>
             <Input
               id="child-name"
@@ -281,32 +312,36 @@ function Setup({
         </div>
 
         <Swatches
-          label="Pelo de ella"
+          label={t(lang, "herHair")}
+          lang={lang}
           options={HAIR}
           value={cast.childHair}
           onChange={(color) => onCast({ childHair: color })}
         />
         <Swatches
-          label={`Pelo de ${roleWord(cast.role)}`}
+          label={`${t(lang, "hairOf")} ${roleWord(cast.role, false, lang)}`}
+          lang={lang}
           options={HAIR}
           value={cast.parentHair}
           onChange={(color) => onCast({ parentHair: color })}
         />
         <Swatches
-          label="Piel de ella"
+          label={t(lang, "herSkin")}
+          lang={lang}
           options={SKIN}
           value={cast.childSkin}
           onChange={(color) => onCast({ childSkin: color })}
         />
         <Swatches
-          label={`Piel de ${roleWord(cast.role)}`}
+          label={`${t(lang, "skinOf")} ${roleWord(cast.role, false, lang)}`}
+          lang={lang}
           options={SKIN}
           value={cast.parentSkin}
           onChange={(color) => onCast({ parentSkin: color })}
         />
 
         <fieldset className="space-y-2">
-          <legend className="font-display text-sm tracking-wide">Lo que a ella le encanta</legend>
+          <legend className="font-display text-sm tracking-wide">{t(lang, "loves")}</legend>
           <div className="flex flex-wrap gap-2">
             {FAVORITES.map((favorite) => {
               const selected = cast.favorite === favorite.phrase;
@@ -321,7 +356,7 @@ function Setup({
                     selected ? "bg-comic-yellow shadow-[3px_3px_0_#1b2a4a]" : "bg-white",
                   )}
                 >
-                  {favorite.phrase}
+                  {favoritePhrase(favorite.phrase, lang)}
                 </button>
               );
             })}
@@ -333,12 +368,10 @@ function Setup({
           disabled={!namesReady}
           className="h-12 w-full font-display text-lg tracking-wide disabled:opacity-40"
         >
-          Elegir la aventura
+          {t(lang, "pickAdventure")}
         </Button>
         {!namesReady && (
-          <p className="text-center font-comic text-sm text-muted-foreground">
-            Faltan los dos nombres para abrir el cómic.
-          </p>
+          <p className="text-center font-comic text-sm text-muted-foreground">{t(lang, "needNames")}</p>
         )}
       </form>
     </div>
@@ -347,11 +380,13 @@ function Setup({
 
 function Swatches({
   label,
+  lang,
   options,
   value,
   onChange,
 }: {
   label: string;
+  lang: Lang;
   options: readonly { id: string; label: string; color: string }[];
   value: string;
   onChange: (color: string) => void;
@@ -361,7 +396,9 @@ function Swatches({
     <fieldset className="space-y-2">
       <legend className="font-display text-sm tracking-wide">
         {label}
-        <span className="ml-2 font-comic font-bold tracking-normal">{selected?.label}</span>
+        <span className="ml-2 font-comic font-bold tracking-normal">
+          {selected ? optionLabel(lang, selected.id, selected.label) : ""}
+        </span>
       </legend>
       <div className="flex flex-wrap gap-2" role="radiogroup" aria-label={label}>
         {options.map((option) => {
@@ -372,7 +409,7 @@ function Swatches({
               type="button"
               role="radio"
               aria-checked={isSelected}
-              aria-label={option.label}
+              aria-label={optionLabel(lang, option.id, option.label)}
               onClick={() => onChange(option.color)}
               className={cn(
                 "size-10 rounded-full border-[3px] border-ink",
@@ -389,10 +426,12 @@ function Swatches({
 
 function Picker({
   cast,
+  lang,
   onBack,
   onPick,
 }: {
   cast: Cast;
+  lang: Lang;
   onBack: () => void;
   onPick: (storyId: string) => void;
 }) {
@@ -400,14 +439,14 @@ function Picker({
     <div className="space-y-5">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h1 className="font-display text-4xl leading-none">Elijan la aventura</h1>
+          <h1 className="font-display text-4xl leading-none">{t(lang, "choose")}</h1>
           <p className="mt-2 max-w-xl font-comic text-lg leading-snug">
-            {displayChild(cast.childName)} y {displayParent(cast.parentName, cast.role)} salen
-            en las cuatro. Seis viñetas cada una, para leer juntos.
+            {displayChild(cast.childName, lang)} {t(lang, "and")}{" "}
+            {displayParent(cast.parentName, cast.role, lang)} {t(lang, "theyAppear")}
           </p>
         </div>
         <Button type="button" variant="outline" className="h-10 border-[3px] border-ink bg-white font-comic" onClick={onBack}>
-          Cambiar nombres
+          {t(lang, "changeNames")}
         </Button>
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
@@ -425,14 +464,14 @@ function Picker({
               </span>
             </div>
             <div className="flex flex-1 flex-col gap-3 p-4">
-              <h2 className="font-display text-2xl leading-none">{story.title}</h2>
-              <p className="font-comic text-base leading-snug">{story.blurb}</p>
+              <h2 className="font-display text-2xl leading-none">{say(lang, story.title, cast)}</h2>
+              <p className="font-comic text-base leading-snug">{say(lang, story.blurb, cast)}</p>
               <Button
                 type="button"
                 className="mt-auto h-11 font-display tracking-wide"
                 onClick={() => onPick(story.id)}
               >
-                Leer este cómic
+                {t(lang, "readThis")}
               </Button>
             </div>
           </article>
@@ -472,6 +511,7 @@ function Reader({
   atEnd: boolean;
 }) {
   const story = getStory(state.storyId);
+  const lang = state.lang === "es" ? "es" : "pt";
   const page = state.pageIndex >= 0 ? story.pages[state.pageIndex] : null;
   const [video, setVideo] = useState(false);
 
@@ -480,9 +520,9 @@ function Reader({
       <div className="no-print flex flex-wrap items-center justify-between gap-2">
         <p className="font-comic text-base">
           {atStart
-            ? "Portada"
-            : `Página ${state.pageIndex + 1} de ${story.pages.length}`}
-          <span className="text-muted-foreground"> · {story.title}</span>
+            ? t(lang, "cover")
+            : `${t(lang, "page")} ${state.pageIndex + 1} ${t(lang, "of")} ${story.pages.length}`}
+          <span className="text-muted-foreground"> · {say(lang, story.title, state.cast)}</span>
         </p>
         <div className="flex flex-wrap gap-2">
           <Button
@@ -491,7 +531,7 @@ function Reader({
             className="h-10 border-[3px] border-ink bg-white font-comic"
             onClick={onStories}
           >
-            Otras aventuras
+            {t(lang, "otherStories")}
           </Button>
           <Button
             type="button"
@@ -500,14 +540,14 @@ function Reader({
             aria-pressed={editingAll}
             onClick={onToggleEdit}
           >
-            {editingAll ? "Listo, ya se lee" : "Escribir las frases"}
+            {editingAll ? t(lang, "doneReading") : t(lang, "writeLines")}
           </Button>
           <Button
             type="button"
             className="h-10 font-display"
             onClick={() => setVideo(true)}
           >
-            Ver en video
+            {t(lang, "watchVideo")}
           </Button>
           <Button
             type="button"
@@ -515,7 +555,7 @@ function Reader({
             className="h-10 border-[3px] border-ink bg-white font-comic"
             onClick={() => window.print()}
           >
-            Imprimir
+            {t(lang, "print")}
           </Button>
         </div>
       </div>
@@ -526,8 +566,9 @@ function Reader({
           {atStart || !page ? (
             <CoverCard
               cast={state.cast}
-              title={story.title}
-              kicker={`${story.title}`}
+              lang={lang}
+              title={say(lang, story.title, state.cast)}
+              kicker={say(lang, story.title, state.cast)}
               issue={STORIES.findIndex((item) => item.id === story.id) + 1}
               scene={story.cover}
               apart={story.id === "espejo"}
@@ -539,6 +580,7 @@ function Reader({
                   key={panel.id}
                   panel={panel}
                   cast={state.cast}
+                  lang={lang}
                   edits={state.edits}
                   editingAll={editingAll}
                   activeBubble={activeBubble}
@@ -550,7 +592,7 @@ function Reader({
           )}
           {atEnd && (
             <p className="mt-3 pr-1 text-right font-display text-4xl tracking-wide text-comic-red">
-              FIN
+              {t(lang, "theEnd")}
             </p>
           )}
         </div>
@@ -564,12 +606,12 @@ function Reader({
           onClick={onBack}
           disabled={atStart}
         >
-          Anterior
+          {t(lang, "previous")}
         </Button>
-        <nav className="flex items-center gap-1" aria-label="Páginas del cómic">
+        <nav className="flex items-center gap-1" aria-label={t(lang, "pages")}>
           <button
             type="button"
-            aria-label="Portada"
+            aria-label={t(lang, "cover")}
             aria-current={atStart ? "page" : undefined}
             onClick={() => onJump(-1)}
             className="grid size-9 place-items-center"
@@ -585,7 +627,7 @@ function Reader({
             <button
               key={storyPage.id}
               type="button"
-              aria-label={`Página ${index + 1}`}
+              aria-label={`${t(lang, "page")} ${index + 1}`}
               aria-current={index === state.pageIndex ? "page" : undefined}
               onClick={() => onJump(index)}
               className="grid size-9 place-items-center"
@@ -607,35 +649,36 @@ function Reader({
               className="h-12 border-[3px] border-ink bg-white px-4 font-display"
               onClick={onRestart}
             >
-              Leer otra vez
+              {t(lang, "readAgain")}
             </Button>
             <Button type="button" className="h-12 px-4 font-display" onClick={onStories}>
-              Otra aventura
+              {t(lang, "another")}
             </Button>
           </div>
         ) : (
           <Button type="button" className="h-12 px-5 font-display text-base" onClick={onNext}>
-            {atStart ? "Abrir el cómic" : "Siguiente"}
+            {atStart ? t(lang, "openComic") : t(lang, "next")}
           </Button>
         )}
       </div>
       <p className="no-print text-center font-comic text-sm text-muted-foreground">
-        Una voz lee los globos de ella. La otra, los de {roleWord(state.cast.role)}.
-        Si les gusta así, «Ver en video» la pasa sola para grabarla.
+        {t(lang, "voiceHint")} {roleWord(state.cast.role, false, lang)}. {t(lang, "voiceHintEnd")}
       </p>
       {video && (
         <VideoPlayer
           cast={state.cast}
           story={story}
+          lang={lang}
           edits={state.edits}
           onClose={() => setVideo(false)}
         />
       )}
 
       <div className="hidden print:block">
-        <p className="font-display text-3xl">{story.title}</p>
+        <p className="font-display text-3xl">{say(lang, story.title, state.cast)}</p>
         <p className="mb-4 font-comic text-lg">
-          {displayChild(state.cast.childName)} y {displayParent(state.cast.parentName, state.cast.role)}
+          {displayChild(state.cast.childName, lang)} {t(lang, "and")}{" "}
+          {displayParent(state.cast.parentName, state.cast.role, lang)}
         </p>
         <div className="grid gap-4">
           {story.pages.map((storyPage) => (
@@ -645,6 +688,7 @@ function Reader({
                   key={`print-${panel.id}`}
                   panel={panel}
                   cast={state.cast}
+                  lang={lang}
                   edits={state.edits}
                   editingAll={false}
                   activeBubble={null}
@@ -662,6 +706,7 @@ function Reader({
 
 function CoverCard({
   cast,
+  lang,
   title,
   kicker,
   issue,
@@ -669,6 +714,7 @@ function CoverCard({
   apart = false,
 }: {
   cast: Cast;
+  lang: Lang;
   title: string;
   kicker: string;
   issue?: number;
@@ -682,14 +728,14 @@ function CoverCard({
       <div className="relative z-20 flex flex-col items-center px-4 pt-5 text-center">
         <div className="w-full max-w-md border-[3px] border-ink bg-sheet/95 px-4 py-4 shadow-[4px_4px_0_#1b2a4a]">
           <p className="font-comic text-xs font-bold tracking-[0.18em] uppercase">
-            {issue ? `N.º ${issue} · para leer juntos` : kicker}
+            {issue ? `N.º ${issue} · ${t(lang, "together")}` : kicker}
           </p>
           <h2 className="mt-1 font-display text-4xl leading-[0.95] text-balance sm:text-5xl">{title}</h2>
           <p className="mt-2 font-comic text-lg leading-snug font-bold text-balance">
-            {displayChild(cast.childName)} y {displayParent(cast.parentName, cast.role)}
+            {displayChild(cast.childName, lang)} {t(lang, "and")} {displayParent(cast.parentName, cast.role, lang)}
           </p>
           <p className="font-comic text-base text-balance">
-            Para quien colecciona {cast.favorite}.
+            {t(lang, "collects")} {favoritePhrase(cast.favorite, lang)}.
           </p>
         </div>
       </div>
@@ -719,30 +765,28 @@ function CastOnScene({ cast, apart = false }: { cast: Cast; apart?: boolean }) {
   );
 }
 
-function HowToRead() {
+function HowToRead({ lang }: { lang: Lang }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
         <Button type="button" variant="outline" className="h-10 border-[3px] border-ink bg-white font-comic">
-          Cómo leerlo
+          {t(lang, "howTo")}
         </Button>
       </DialogTrigger>
       <DialogContent className="border-[3px] border-ink bg-sheet sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="font-display text-2xl">Cómo leerlo juntos</DialogTitle>
-          <DialogDescription className="font-comic text-base text-ink">
-            El cómic ya viene escrito. Ustedes le ponen la voz y, si quieren, el crayón.
-          </DialogDescription>
+          <DialogTitle className="font-display text-2xl">{t(lang, "howTitle")}</DialogTitle>
+          <DialogDescription className="font-comic text-base text-ink">{t(lang, "howBody")}</DialogDescription>
         </DialogHeader>
         <ol className="list-decimal space-y-2 pl-5 font-comic text-base leading-snug">
-          <li>Siéntense cerca, con la pantalla entre los dos.</li>
-          <li>Una voz lee los globos de ella. La otra, los de mamá o papá.</li>
-          <li>Si una frase no les suena, tóquenla y cámbienla.</li>
-          <li>En la última página pueden dejarla como quieran recordarla.</li>
+          <li>{t(lang, "how1")}</li>
+          <li>{t(lang, "how2")}</li>
+          <li>{t(lang, "how3")}</li>
+          <li>{t(lang, "how4")}</li>
         </ol>
         <DialogClose asChild>
           <Button type="button" className="h-11 font-display">
-            Entendido
+            {t(lang, "gotIt")}
           </Button>
         </DialogClose>
       </DialogContent>
@@ -750,30 +794,28 @@ function HowToRead() {
   );
 }
 
-function ResetDialog({ onReset }: { onReset: () => void }) {
+function ResetDialog({ lang, onReset }: { lang: Lang; onReset: () => void }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
         <Button type="button" variant="ghost" className="h-10 font-comic text-muted-foreground">
-          Empezar de cero
+          {t(lang, "reset")}
         </Button>
       </DialogTrigger>
       <DialogContent className="border-[3px] border-ink bg-sheet sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="font-display text-2xl">¿Empezamos de cero?</DialogTitle>
-          <DialogDescription className="font-comic text-base text-ink">
-            Se borran los nombres y las frases que hayan cambiado en este navegador.
-          </DialogDescription>
+          <DialogTitle className="font-display text-2xl">{t(lang, "resetTitle")}</DialogTitle>
+          <DialogDescription className="font-comic text-base text-ink">{t(lang, "resetBody")}</DialogDescription>
         </DialogHeader>
         <div className="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
           <DialogClose asChild>
             <Button type="button" variant="outline" className="h-11 border-[3px] border-ink bg-white font-comic">
-              Mejor no
+              {t(lang, "betterNot")}
             </Button>
           </DialogClose>
           <DialogClose asChild>
             <Button type="button" className="h-11 font-display" onClick={onReset}>
-              Sí, borrar
+              {t(lang, "yesDelete")}
             </Button>
           </DialogClose>
         </div>

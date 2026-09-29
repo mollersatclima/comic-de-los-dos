@@ -23,9 +23,9 @@ const comic = Comic_Neue({
 });
 
 export const metadata: Metadata = {
-  title: "Cómic de los dos",
+  title: "O gibi dos dois",
   description:
-    "Un cómic para inventar y leer en voz alta entre tú y tu hija. Eligen los nombres, abren una aventura y cambian las frases.",
+    "Um gibi para a Aynara ler no celular. Nicolas atravessa um espelho mágico da Espanha até o Brasil.",
 };
 
 export const viewport: Viewport = {
@@ -35,7 +35,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
-      lang="es"
+      lang="pt-BR"
       className={`${nunito.variable} ${display.variable} ${comic.variable} h-full antialiased`}
     >
       <body className="min-h-dvh">{children}</body>
