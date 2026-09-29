@@ -34,7 +34,12 @@ export type SceneId =
   | "puddle-look"
   | "puddle-leaf"
   | "walk-home"
-  | "towels";
+  | "towels"
+  | "mirror-spain"
+  | "mirror-glow"
+  | "mirror-cross"
+  | "mirror-brazil"
+  | "mirror-bye";
 
 export type Speaker = "child" | "parent";
 
@@ -120,7 +125,7 @@ export const FAVORITES = [
   { id: "cuentos", phrase: "los cuentos" },
 ] as const;
 
-const STORAGE_KEY = "comic-de-los-dos-v2";
+const STORAGE_KEY = "comic-de-los-dos-v3";
 const STORAGE_EVENT = "comic-de-los-dos-change";
 
 export function defaultCast(): Cast {
@@ -139,8 +144,8 @@ export function defaultCast(): Cast {
 export function defaultState(): ComicState {
   return {
     cast: defaultCast(),
-    storyId: "limonero",
-    step: "taller",
+    storyId: "espejo",
+    step: "lectura",
     pageIndex: -1,
     edits: {},
   };

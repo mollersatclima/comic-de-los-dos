@@ -34,6 +34,7 @@ import {
   writeComic,
   type Cast,
   type ComicState,
+  type SceneId,
 } from "@/lib/comic";
 import { STORIES, getStory } from "@/lib/stories";
 import { cn } from "@/lib/utils";
@@ -418,7 +419,7 @@ function Picker({
             <div className="relative h-40 overflow-hidden border-b-[3px] border-ink">
               <Scene id={story.cover} />
               <div className="halftone pointer-events-none absolute inset-0" />
-              <CastOnScene cast={cast} />
+              <CastOnScene cast={cast} apart={story.id === "espejo"} />
               <span className="absolute top-2 left-2 border-[3px] border-ink bg-comic-yellow px-2 font-display text-sm">
                 N.º {index + 1}
               </span>
@@ -528,6 +529,8 @@ function Reader({
               title={story.title}
               kicker={`${story.title}`}
               issue={STORIES.findIndex((item) => item.id === story.id) + 1}
+              scene={story.cover}
+              apart={story.id === "espejo"}
             />
           ) : (
             <div className="grid gap-3 md:grid-cols-2">
@@ -662,15 +665,19 @@ function CoverCard({
   title,
   kicker,
   issue,
+  scene = "garden",
+  apart = false,
 }: {
   cast: Cast;
   title: string;
   kicker: string;
   issue?: number;
+  scene?: SceneId;
+  apart?: boolean;
 }) {
   return (
     <div className="relative flex min-h-[520px] flex-col overflow-hidden border-[3px] border-ink bg-[#8ecae6]">
-      <Scene id="garden" />
+      <Scene id={scene} />
       <div className="halftone pointer-events-none absolute inset-0" />
       <div className="relative z-20 flex flex-col items-center px-4 pt-5 text-center">
         <div className="w-full max-w-md border-[3px] border-ink bg-sheet/95 px-4 py-4 shadow-[4px_4px_0_#1c1917]">
@@ -687,20 +694,26 @@ function CoverCard({
         </div>
       </div>
       <div className="relative z-10 mt-auto h-60 sm:h-72">
-        <CastOnScene cast={cast} />
+        <CastOnScene cast={cast} apart={apart} />
       </div>
     </div>
   );
 }
 
-function CastOnScene({ cast }: { cast: Cast }) {
+function CastOnScene({ cast, apart = false }: { cast: Cast; apart?: boolean }) {
+  const child = (
+    <Character who="child" hair={cast.childHair} skin={cast.childSkin} pose="wave" flip={apart} />
+  );
+  const parent = (
+    <Character who={cast.role} hair={cast.parentHair} skin={cast.parentSkin} pose="wave" flip={!apart} />
+  );
   return (
     <>
       <div className="absolute bottom-0 left-[8%] z-10 h-[92%]" style={{ aspectRatio: "160 / 230" }}>
-        <Character who="child" hair={cast.childHair} skin={cast.childSkin} pose="wave" />
+        {apart ? parent : child}
       </div>
       <div className="absolute right-[8%] bottom-0 z-10 h-full" style={{ aspectRatio: "160 / 230" }}>
-        <Character who={cast.role} hair={cast.parentHair} skin={cast.parentSkin} pose="wave" flip />
+        {apart ? child : parent}
       </div>
     </>
   );

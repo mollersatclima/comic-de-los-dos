@@ -236,18 +236,31 @@ function TitleSlide({
         </div>
       </div>
       <div className="relative z-10 mt-auto h-56">
-        <div className="absolute bottom-0 left-[10%] h-[92%]" style={{ aspectRatio: "160 / 230" }}>
-          <Character who="child" hair={cast.childHair} skin={cast.childSkin} pose={end ? "hug" : "wave"} />
-        </div>
-        <div className="absolute right-[10%] bottom-0 h-full" style={{ aspectRatio: "160 / 230" }}>
-          <Character
-            who={cast.role}
-            hair={cast.parentHair}
-            skin={cast.parentSkin}
-            pose={end ? "hug" : "wave"}
-            flip
-          />
-        </div>
+        {story.id === "espejo" && !end ? (
+          <>
+            <div className="absolute bottom-0 left-[8%] h-full" style={{ aspectRatio: "160 / 230" }}>
+              <Character who={cast.role} hair={cast.parentHair} skin={cast.parentSkin} pose="wave" />
+            </div>
+            <div className="absolute right-[8%] bottom-0 h-[92%]" style={{ aspectRatio: "160 / 230" }}>
+              <Character who="child" hair={cast.childHair} skin={cast.childSkin} pose="wave" flip />
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="absolute bottom-0 left-[10%] h-[92%]" style={{ aspectRatio: "160 / 230" }}>
+              <Character who="child" hair={cast.childHair} skin={cast.childSkin} pose={end ? "hug" : "wave"} />
+            </div>
+            <div className="absolute right-[10%] bottom-0 h-full" style={{ aspectRatio: "160 / 230" }}>
+              <Character
+                who={cast.role}
+                hair={cast.parentHair}
+                skin={cast.parentSkin}
+                pose={end ? "hug" : "wave"}
+                flip
+              />
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

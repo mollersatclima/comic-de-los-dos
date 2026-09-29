@@ -17,7 +17,143 @@ const pair = (
   ];
 };
 
+const apart = (child: Actor["pose"], parent: Actor["pose"]): Actor[] => [
+  { who: "parent", pose: parent, x: "3%" },
+  { who: "child", pose: child, flip: true, x: "54%" },
+];
+
 export const STORIES: Story[] = [
+  {
+    id: "espejo",
+    title: "El espejo entre España y Brasil",
+    blurb:
+      "Aynara vive en Brasil y Nicolas en España. Un espejo mágico abre el camino para verse.",
+    cover: "mirror-glow",
+    pages: [
+      {
+        id: "esp-1",
+        panels: [
+          {
+            id: "esp-1a",
+            scene: "mirror-spain",
+            caption: "Aynara vive en Brasil. Nicolas, en España.",
+            bubbles: [
+              {
+                id: "esp-1a-c",
+                speaker: "child",
+                text: "Papá, el espejo de mi cuarto está tibio.",
+              },
+              {
+                id: "esp-1a-p",
+                speaker: "parent",
+                text: "El mío también. Creo que se están buscando.",
+              },
+            ],
+            actors: apart("wave", "peek"),
+          },
+          {
+            id: "esp-1b",
+            scene: "mirror-glow",
+            sfx: "¡brilla!",
+            bubbles: [
+              {
+                id: "esp-1b-c",
+                speaker: "child",
+                text: "Si lo miramos a la vez, se abre.",
+              },
+              {
+                id: "esp-1b-p",
+                speaker: "parent",
+                text: "Entonces miro. Y cruzo.",
+              },
+            ],
+            actors: apart("point", "point"),
+          },
+        ],
+      },
+      {
+        id: "esp-2",
+        panels: [
+          {
+            id: "esp-2a",
+            scene: "mirror-cross",
+            caption: "Nicolas dio un paso, y España se quedó atrás.",
+            bubbles: [
+              {
+                id: "esp-2a-c",
+                speaker: "child",
+                text: "¡Te veo dentro del marco!",
+              },
+              {
+                id: "esp-2a-p",
+                speaker: "parent",
+                text: "El camino es corto. Ya huelo tu cuarto.",
+              },
+            ],
+            actors: pair("cheer", "wave", "close"),
+          },
+          {
+            id: "esp-2b",
+            scene: "mirror-brazil",
+            caption: "Del otro lado estaba Brasil.",
+            bubbles: [
+              {
+                id: "esp-2b-c",
+                speaker: "child",
+                text: "¡Llegaste! Stitch también te esperaba.",
+              },
+              {
+                id: "esp-2b-p",
+                speaker: "parent",
+                text: "Un parpadeo, y ya estoy contigo.",
+              },
+            ],
+            actors: pair("cheer", "wave"),
+          },
+        ],
+      },
+      {
+        id: "esp-3",
+        panels: [
+          {
+            id: "esp-3a",
+            scene: "mirror-brazil",
+            bubbles: [
+              {
+                id: "esp-3a-c",
+                speaker: "child",
+                text: "¿Mañana el espejo abre otra vez?",
+              },
+              {
+                id: "esp-3a-p",
+                speaker: "parent",
+                text: "Cada vez que lo miremos juntos.",
+              },
+            ],
+            actors: pair("peek", "stand"),
+          },
+          {
+            id: "esp-3b",
+            scene: "mirror-bye",
+            caption: "El marco guardó el camino entre los dos países.",
+            bubbles: [
+              {
+                id: "esp-3b-c",
+                speaker: "child",
+                text: "Te quiero, aunque vivas en España.",
+              },
+              {
+                id: "esp-3b-p",
+                speaker: "parent",
+                text: "Y yo a ti. Brasil queda a un espejo.",
+              },
+            ],
+            actors: apart("hug", "hug"),
+          },
+        ],
+      },
+    ],
+  },
   {
     id: "limonero",
     title: "El mapa del limonero",

@@ -50,6 +50,16 @@ export function Scene({ id }: { id: SceneId }) {
       return <Street variant="leaf" />;
     case "walk-home":
       return <Street variant="home" />;
+    case "mirror-spain":
+      return <MagicMirror variant="spain" />;
+    case "mirror-glow":
+      return <MagicMirror variant="glow" />;
+    case "mirror-cross":
+      return <MagicMirror variant="cross" />;
+    case "mirror-brazil":
+      return <MagicMirror variant="brazil" />;
+    case "mirror-bye":
+      return <MagicMirror variant="bye" />;
     default: {
       const exhaustive: never = id;
       return exhaustive;
@@ -445,6 +455,143 @@ function Street({ variant }: { variant: "door" | "splash" | "look" | "leaf" | "h
           <ellipse cx="460" cy="372" rx="28" ry="8" fill="#8ecae6" stroke={INK} strokeWidth="3" />
         </>
       )}
+    </Frame>
+  );
+}
+
+function MagicMirror({ variant }: { variant: "spain" | "glow" | "cross" | "brazil" | "bye" }) {
+  if (variant === "cross") return <MirrorCrossing />;
+  if (variant === "brazil") return <BrazilRoom />;
+  const glow = variant === "glow" || variant === "bye";
+  return (
+    <Frame>
+      <SpainSide />
+      <BrazilSide />
+      <path d="M0 300 H640 V420 H0 Z" fill="#e7c39a" stroke={INK} strokeWidth="4" />
+      <MirrorFrame glow={glow} />
+      {variant === "bye" && (
+        <path
+          d="M250 250 H390"
+          stroke="#fff6df"
+          strokeWidth="8"
+          strokeLinecap="round"
+          opacity="0.8"
+        />
+      )}
+    </Frame>
+  );
+}
+
+function SpainSide() {
+  return (
+    <g>
+      <rect width="320" height="300" fill="#f6f0e6" />
+      <rect x="28" y="36" width="110" height="90" rx="4" fill="#8ecae6" stroke={INK} strokeWidth="4" />
+      <path d="M83 36 V126 M28 80 H138" stroke={INK} strokeWidth="4" />
+      <circle cx="96" cy="58" r="10" fill="#ffd166" stroke={INK} strokeWidth="2" />
+      <rect x="36" y="150" width="70" height="46" rx="4" fill="#d62828" stroke={INK} strokeWidth="3" />
+      <path d="M28 150 H114 L71 128 Z" fill="#9b2331" stroke={INK} strokeWidth="3" strokeLinejoin="round" />
+    </g>
+  );
+}
+
+function BrazilSide() {
+  const beads = ["#e23d3d", "#f4a261", "#ffe08a", "#52b788", "#4ea2ff", "#9b5de5"];
+  return (
+    <g>
+      <rect x="320" width="320" height="300" fill="#fff7f2" />
+      <rect x="470" y="40" width="120" height="86" rx="4" fill="#b7e4c7" stroke={INK} strokeWidth="4" />
+      <circle cx="530" cy="78" r="22" fill="#52b788" stroke={INK} strokeWidth="3" />
+      <rect x="524" y="96" width="12" height="22" fill="#8d5a3a" stroke={INK} strokeWidth="2" />
+      {beads.map((color, index) => (
+        <circle
+          key={color}
+          cx={360 + index * 16}
+          cy={28 + (index % 2) * 6}
+          r="5"
+          fill={color}
+          stroke={INK}
+          strokeWidth="2"
+        />
+      ))}
+      <StitchPlush x={430} y={150} />
+    </g>
+  );
+}
+
+function MirrorFrame({ glow }: { glow: boolean }) {
+  return (
+    <g>
+      <rect
+        x="268"
+        y="28"
+        width="104"
+        height="280"
+        rx="8"
+        fill={glow ? "#fff3b0" : "#d7f4ff"}
+        stroke="#e6b325"
+        strokeWidth="12"
+      />
+      <rect
+        x="268"
+        y="28"
+        width="104"
+        height="280"
+        rx="8"
+        fill="none"
+        stroke={INK}
+        strokeWidth="4"
+      />
+      {glow && (
+        <>
+          <circle cx="300" cy="90" r="6" fill="#fff" stroke={INK} strokeWidth="2" />
+          <circle cx="340" cy="140" r="4" fill="#fff" stroke={INK} strokeWidth="2" />
+          <circle cx="318" cy="190" r="5" fill="#fff6df" stroke={INK} strokeWidth="2" />
+        </>
+      )}
+    </g>
+  );
+}
+
+function BrazilRoom() {
+  const beads = ["#e23d3d", "#f4a261", "#ffe08a", "#52b788", "#4ea2ff", "#9b5de5"];
+  return (
+    <Frame>
+      <rect width="640" height="300" fill="#fff7f2" />
+      <rect y="300" width="640" height="120" fill="#f0d2a8" stroke={INK} strokeWidth="4" />
+      <rect x="36" y="28" width="150" height="100" rx="4" fill="#b7e4c7" stroke={INK} strokeWidth="4" />
+      <circle cx="110" cy="74" r="28" fill="#52b788" stroke={INK} strokeWidth="3" />
+      <rect x="102" y="98" width="16" height="24" fill="#8d5a3a" stroke={INK} strokeWidth="3" />
+      {beads.map((color, index) => (
+        <circle
+          key={color}
+          cx={220 + index * 18}
+          cy={36 + (index % 2) * 7}
+          r="6"
+          fill={color}
+          stroke={INK}
+          strokeWidth="2"
+        />
+      ))}
+      <StitchPlush x={520} y={168} />
+      <MirrorFrame glow />
+    </Frame>
+  );
+}
+
+function MirrorCrossing() {
+  return (
+    <Frame>
+      <rect width="640" height="420" fill="#1d3557" />
+      <circle cx="90" cy="70" r="3" fill="#fff6df" />
+      <circle cx="180" cy="120" r="2" fill="#fff" />
+      <circle cx="520" cy="80" r="3" fill="#ffe08a" />
+      <circle cx="460" cy="150" r="2" fill="#fff" />
+      <circle cx="300" cy="60" r="2.5" fill="#fff6df" />
+      <ellipse cx="320" cy="250" rx="210" ry="150" fill="#fff3b0" opacity="0.9" />
+      <ellipse cx="320" cy="250" rx="120" ry="86" fill="#fffdf6" />
+      <rect x="250" y="40" width="140" height="340" rx="10" fill="none" stroke="#e6b325" strokeWidth="12" />
+      <rect x="250" y="40" width="140" height="340" rx="10" fill="none" stroke={INK} strokeWidth="4" />
     </Frame>
   );
 }
