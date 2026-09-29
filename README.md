@@ -19,3 +19,5 @@ npm run dev
 ```
 
 Abre [http://localhost:3000](http://localhost:3000). Para leerlo juntos, una voz toma los globos de ella y la otra los de mamá o papá. Las flechas del teclado pasan la página. También se puede imprimir.
+
+Si la historia convence en viñetas, el botón «Ver en video» la pasa sola, con voz opcional, para grabarla en pantalla grande.

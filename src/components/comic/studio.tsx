@@ -4,6 +4,7 @@ import { useEffect, useState, useSyncExternalStore } from "react";
 import { Character } from "@/components/comic/character";
 import { PanelView } from "@/components/comic/panel";
 import { Scene } from "@/components/comic/scenes";
+import { VideoPlayer } from "@/components/comic/video-player";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -45,6 +46,7 @@ export function Studio() {
 
   useEffect(() => {
     function onKey(event: KeyboardEvent) {
+      if (document.getElementById("comic-video")) return;
       const target = event.target as HTMLElement | null;
       if (target && (target.tagName === "INPUT" || target.tagName === "TEXTAREA")) return;
       if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
@@ -470,6 +472,7 @@ function Reader({
 }) {
   const story = getStory(state.storyId);
   const page = state.pageIndex >= 0 ? story.pages[state.pageIndex] : null;
+  const [video, setVideo] = useState(false);
 
   return (
     <div className="space-y-4">
@@ -497,6 +500,13 @@ function Reader({
             onClick={onToggleEdit}
           >
             {editingAll ? "Listo, ya se lee" : "Escribir las frases"}
+          </Button>
+          <Button
+            type="button"
+            className="h-10 font-display"
+            onClick={() => setVideo(true)}
+          >
+            Ver en video
           </Button>
           <Button
             type="button"
@@ -608,8 +618,16 @@ function Reader({
       </div>
       <p className="no-print text-center font-comic text-sm text-muted-foreground">
         Una voz lee los globos de ella. La otra, los de {roleWord(state.cast.role)}.
-        Las flechas del teclado también pasan la página.
+        Si les gusta así, «Ver en video» la pasa sola para grabarla.
       </p>
+      {video && (
+        <VideoPlayer
+          cast={state.cast}
+          story={story}
+          edits={state.edits}
+          onClose={() => setVideo(false)}
+        />
+      )}
 
       <div className="hidden print:block">
         <p className="font-display text-3xl">{story.title}</p>
