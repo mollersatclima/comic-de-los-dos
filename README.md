@@ -4,6 +4,7 @@ Un cómic para leer en voz alta entre tú y tu hija. Eligen quién cuenta (mamá
 
 Las historias son:
 
+- El espejo entre España y Brasil
 - El mapa del limonero
 - La nave de la manta
 - El concierto de los calcetines
