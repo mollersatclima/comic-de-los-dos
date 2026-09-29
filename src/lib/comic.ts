@@ -59,6 +59,7 @@ export type Actor = {
 export type ComicPanel = {
   id: string;
   scene: SceneId;
+  art?: string;
   caption?: string;
   sfx?: string;
   bubbles: Bubble[];
@@ -75,6 +76,7 @@ export type Story = {
   title: string;
   blurb: string;
   cover: SceneId;
+  coverArt?: string;
   pages: StoryPage[];
 };
 
@@ -128,7 +130,7 @@ export const FAVORITES = [
   { id: "cuentos", phrase: "los cuentos" },
 ] as const;
 
-const STORAGE_KEY = "comic-de-los-dos-v4";
+const STORAGE_KEY = "comic-de-los-dos-v5";
 const STORAGE_EVENT = "comic-de-los-dos-change";
 
 export function defaultCast(): Cast {

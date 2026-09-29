@@ -29,6 +29,7 @@ export const STORIES: Story[] = [
     blurb:
       "Aynara vive en Brasil y Nicolas en España. Un espejo mágico abre el camino para verse.",
     cover: "mirror-glow",
+    coverArt: "/art/scene-cover.png",
     pages: [
       {
         id: "esp-1",
@@ -36,6 +37,7 @@ export const STORIES: Story[] = [
           {
             id: "esp-1a",
             scene: "mirror-spain",
+            art: "/art/scene-1a.png",
             caption: "Aynara vive en Brasil. Nicolas, en España.",
             bubbles: [
               {
@@ -54,6 +56,7 @@ export const STORIES: Story[] = [
           {
             id: "esp-1b",
             scene: "mirror-glow",
+            art: "/art/scene-1b.png",
             sfx: "¡brilla!",
             bubbles: [
               {
@@ -77,6 +80,7 @@ export const STORIES: Story[] = [
           {
             id: "esp-2a",
             scene: "mirror-cross",
+            art: "/art/scene-2a.png",
             caption: "Nicolas dio un paso, y España se quedó atrás.",
             bubbles: [
               {
@@ -95,6 +99,7 @@ export const STORIES: Story[] = [
           {
             id: "esp-2b",
             scene: "mirror-brazil",
+            art: "/art/scene-2b.png",
             caption: "Del otro lado estaba Brasil.",
             bubbles: [
               {
@@ -118,6 +123,7 @@ export const STORIES: Story[] = [
           {
             id: "esp-3a",
             scene: "mirror-brazil",
+            art: "/art/scene-3a.png",
             bubbles: [
               {
                 id: "esp-3a-c",
@@ -135,6 +141,7 @@ export const STORIES: Story[] = [
           {
             id: "esp-3b",
             scene: "mirror-bye",
+            art: "/art/scene-3b.png",
             caption: "El marco guardó el camino entre los dos países.",
             bubbles: [
               {

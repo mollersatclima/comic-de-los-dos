@@ -136,6 +136,13 @@ export function Studio() {
           <span className="font-comic text-sm text-muted-foreground">{t(lang, "tagline")}</span>
         </button>
         <div className="flex flex-wrap items-center gap-2">
+          <Button
+            type="button"
+            className="h-10 bg-[#e63946] hover:bg-[#d62839] text-white font-display shadow-[2px_2px_0_#1b2a4a] text-sm"
+            onClick={() => patch({ step: "aventura" })}
+          >
+            📖 {lang === "pt" ? "Ver Histórias" : "Ver Aventuras"}
+          </Button>
           <div className="flex overflow-hidden border-[3px] border-ink" role="group" aria-label={t(lang, "language")}>
             {(
               [
@@ -243,19 +250,101 @@ function Setup({
   onContinue: () => void;
 }) {
   return (
-    <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
-      <CoverCard cast={cast} lang={lang} title={t(lang, "today")} kicker={t(lang, "coverKicker")} />
-      <form
-        className="space-y-6 border-[3px] border-ink bg-sheet p-4 shadow-[6px_6px_0_#1b2a4a] sm:p-6"
-        onSubmit={(event) => {
-          event.preventDefault();
-          if (namesReady) onContinue();
-        }}
-      >
-        <div>
-          <h1 className="font-display text-4xl leading-none">{t(lang, "draw")}</h1>
-          <p className="mt-2 font-comic text-lg leading-snug">{t(lang, "drawBody")}</p>
+    <div className="space-y-8">
+      {/* Anime Avatars Showcase */}
+      <section className="border-[3px] border-ink bg-[#fffdf5] p-5 shadow-[6px_6px_0_#1b2a4a]">
+        <div className="flex flex-wrap items-baseline justify-between gap-2 border-b-2 border-ink/20 pb-3">
+          <div>
+            <span className="inline-block bg-[#f59e0b] px-2.5 py-0.5 font-display text-xs font-bold uppercase tracking-wider text-ink shadow-[2px_2px_0_#1b2a4a]">
+              Anime DBZ Character Cards
+            </span>
+            <h2 className="mt-1 font-display text-2xl sm:text-3xl">
+              {lang === "pt" ? "Personagens Oficiais do Mangá" : "Personajes Oficiales del Manga"}
+            </h2>
+          </div>
+          <p className="font-comic text-xs text-muted-foreground">
+            {lang === "pt" ? "Design original de Akira Toriyama (DBZ 90s)" : "Diseño fiel estilo Toriyama DBZ 90s"}
+          </p>
         </div>
+
+        <div className="mt-5 grid gap-6 md:grid-cols-2">
+          {/* Nicolas card */}
+          <div className="overflow-hidden border-[3px] border-ink bg-white shadow-[4px_4px_0_#1b2a4a]">
+            <div className="relative aspect-square w-full bg-[#f6ead4]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/art/avatar-nicolas.png"
+                alt="Avatar Nicolas anime"
+                className="h-full w-full object-cover"
+              />
+              <span className="absolute top-3 left-3 bg-[#e63946] px-2.5 py-1 font-display text-xs text-white shadow-[2px_2px_0_#1b2a4a]">
+                #01 · NICOLAS (ESPAÑA)
+              </span>
+            </div>
+            <div className="p-4 space-y-2">
+              <div className="flex items-center justify-between">
+                <h3 className="font-display text-xl">Nicolas Moller</h3>
+                <span className="rounded bg-[#2a9d8f]/20 px-2 py-0.5 font-comic text-xs font-bold text-[#2a9d8f]">
+                  Madrid · Viajero del Espejo
+                </span>
+              </div>
+              <p className="font-comic text-sm text-ink/80 leading-snug">
+                {lang === "pt"
+                  ? "Cabelo escuro, óculos metálicos com ponte dupla, camisa clara e pulseira prateada. Capaz de cruzar dimensões para ver sua filha."
+                  : "Pelo castaño oscuro, gafas de doble puente, camiseta crema y pulsera de eslabones plateada. Capaz de atravesar dimensiones para ver a su hija."}
+              </p>
+            </div>
+          </div>
+
+          {/* Aynara card */}
+          <div className="overflow-hidden border-[3px] border-ink bg-white shadow-[4px_4px_0_#1b2a4a]">
+            <div className="relative aspect-square w-full bg-[#f6ead4]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/art/avatar-aynara.png"
+                alt="Avatar Aynara anime"
+                className="h-full w-full object-cover"
+              />
+              <span className="absolute top-3 left-3 bg-[#f59e0b] px-2.5 py-1 font-display text-xs text-ink shadow-[2px_2px_0_#1b2a4a]">
+                #02 · AYNARA (BRASIL)
+              </span>
+            </div>
+            <div className="p-4 space-y-2">
+              <div className="flex items-center justify-between">
+                <h3 className="font-display text-xl">Aynara Moller</h3>
+                <span className="rounded bg-[#e76f51]/20 px-2 py-0.5 font-comic text-xs font-bold text-[#e76f51]">
+                  Rio de Janeiro · Guardiã
+                </span>
+              </div>
+              <p className="font-comic text-sm text-ink/80 leading-snug">
+                {lang === "pt"
+                  ? "Cabelo castanho ondulado com tufo no topo, olhos grandes expressivos, camiseta coral com estrelas e broche do Stitch. Esperando pelo abraço."
+                  : "Pelo castaño ondulado con mechón en la coronilla, grandes ojos expresivos, camiseta coral con estrellas y broche de Stitch. Esperando el abrazo."}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
+        <CoverCard
+          cast={cast}
+          lang={lang}
+          title={t(lang, "today")}
+          kicker={t(lang, "coverKicker")}
+          art="/art/scene-cover.png"
+        />
+        <form
+          className="space-y-6 border-[3px] border-ink bg-sheet p-4 shadow-[6px_6px_0_#1b2a4a] sm:p-6"
+          onSubmit={(event) => {
+            event.preventDefault();
+            if (namesReady) onContinue();
+          }}
+        >
+          <div>
+            <h1 className="font-display text-4xl leading-none">{t(lang, "draw")}</h1>
+            <p className="mt-2 font-comic text-lg leading-snug">{t(lang, "drawBody")}</p>
+          </div>
 
         <fieldset className="space-y-2">
           <legend className="font-display text-sm tracking-wide">{t(lang, "who")}</legend>
@@ -376,6 +465,7 @@ function Setup({
         )}
       </form>
     </div>
+    </div>
   );
 }
 
@@ -457,9 +547,23 @@ function Picker({
             className="flex flex-col border-[3px] border-ink bg-sheet shadow-[5px_5px_0_#1b2a4a] motion-safe:transition-transform motion-safe:hover:-translate-y-0.5"
           >
             <div className="relative h-40 overflow-hidden border-b-[3px] border-ink">
-              <Scene id={story.cover} />
-              <div className="halftone pointer-events-none absolute inset-0" />
-              <CastOnScene cast={cast} apart={story.id === "espejo"} />
+              {story.coverArt ? (
+                <>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={story.coverArt}
+                    alt=""
+                    className="absolute inset-0 h-full w-full object-cover object-center"
+                  />
+                  <div className="halftone pointer-events-none absolute inset-0 opacity-20" />
+                </>
+              ) : (
+                <>
+                  <Scene id={story.cover} />
+                  <div className="halftone pointer-events-none absolute inset-0" />
+                  <CastOnScene cast={cast} apart={story.id === "espejo"} />
+                </>
+              )}
               <span className="absolute top-2 left-2 border-[3px] border-ink bg-comic-yellow px-2 font-display text-sm">
                 N.º {index + 1}
               </span>
@@ -531,10 +635,10 @@ function Reader({
           <Button
             type="button"
             variant="outline"
-            className="h-10 border-[3px] border-ink bg-white font-comic"
+            className="h-10 border-[3px] border-ink bg-[#f59e0b] hover:bg-[#d97706] text-ink font-display shadow-[2px_2px_0_#1b2a4a]"
             onClick={onStories}
           >
-            {t(lang, "otherStories")}
+            ⭐ {t(lang, "otherStories")}
           </Button>
           <Button
             type="button"
@@ -547,14 +651,14 @@ function Reader({
           </Button>
           <Button
             type="button"
-            className="h-10 font-display"
+            className="h-10 bg-[#e63946] hover:bg-[#d62839] text-white font-display shadow-[2px_2px_0_#1b2a4a]"
             onClick={() => {
               musicWasOn.current = scoreIsOn();
               setScore(true);
               setVideo(true);
             }}
           >
-            {t(lang, "watchVideo")}
+            🎬 {t(lang, "watchVideo")}
           </Button>
           <Button
             type="button"
@@ -587,6 +691,7 @@ function Reader({
               kicker={say(lang, story.title, state.cast)}
               issue={STORIES.findIndex((item) => item.id === story.id) + 1}
               scene={story.cover}
+              art={story.coverArt}
               apart={story.id === "espejo"}
             />
           ) : (
@@ -731,6 +836,7 @@ function CoverCard({
   kicker,
   issue,
   scene = "garden",
+  art,
   apart = false,
 }: {
   cast: Cast;
@@ -739,12 +845,27 @@ function CoverCard({
   kicker: string;
   issue?: number;
   scene?: SceneId;
+  art?: string;
   apart?: boolean;
 }) {
   return (
     <div className="relative flex min-h-[520px] flex-col overflow-hidden border-[3px] border-ink bg-[#8ecae6]">
-      <Scene id={scene} />
-      <div className="halftone pointer-events-none absolute inset-0" />
+      {art ? (
+        <>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={art}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#1b2a4a]/40 via-transparent to-[#1b2a4a]/60" />
+        </>
+      ) : (
+        <>
+          <Scene id={scene} />
+          <div className="halftone pointer-events-none absolute inset-0" />
+        </>
+      )}
       <div className="relative z-20 flex flex-col items-center px-4 pt-5 text-center">
         <div className="w-full max-w-md border-[3px] border-ink bg-sheet/95 px-4 py-4 shadow-[4px_4px_0_#1b2a4a]">
           <p className="font-comic text-xs font-bold tracking-[0.18em] uppercase">
@@ -759,9 +880,11 @@ function CoverCard({
           </p>
         </div>
       </div>
-      <div className="relative z-10 mt-auto h-60 sm:h-72">
-        <CastOnScene cast={cast} apart={apart} />
-      </div>
+      {!art && (
+        <div className="relative z-10 mt-auto h-60 sm:h-72">
+          <CastOnScene cast={cast} apart={apart} />
+        </div>
+      )}
     </div>
   );
 }

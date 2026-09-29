@@ -74,29 +74,43 @@ export function PanelView({
           </p>
         )}
       </div>
-      <div className="relative mt-1 min-h-[230px] flex-1">
-        <Scene id={panel.scene} />
-        <div className="halftone pointer-events-none absolute inset-0" />
-        {panel.actors.map((actor, index) => (
-          <div
-            key={`${actor.who}-${index}`}
-            className="absolute bottom-0 z-10"
-            style={{
-              left: actor.x,
-              height: actor.who === "child" ? "78%" : "86%",
-              aspectRatio: "160 / 230",
-              zIndex: index + 1,
-            }}
-          >
-            <Character
-              who={actor.who === "child" ? "child" : cast.role}
-              hair={actor.who === "child" ? cast.childHair : cast.parentHair}
-              skin={actor.who === "child" ? cast.childSkin : cast.parentSkin}
-              pose={actor.pose}
-              flip={actor.flip}
+      <div className="relative mt-1 min-h-[260px] flex-1 overflow-hidden">
+        {panel.art ? (
+          <>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={panel.art}
+              alt=""
+              className="absolute inset-0 h-full w-full object-cover object-center"
             />
-          </div>
-        ))}
+            <div className="halftone pointer-events-none absolute inset-0 opacity-25" />
+          </>
+        ) : (
+          <>
+            <Scene id={panel.scene} />
+            <div className="halftone pointer-events-none absolute inset-0" />
+            {panel.actors.map((actor, index) => (
+              <div
+                key={`${actor.who}-${index}`}
+                className="absolute bottom-0 z-10"
+                style={{
+                  left: actor.x,
+                  height: actor.who === "child" ? "78%" : "86%",
+                  aspectRatio: "160 / 230",
+                  zIndex: index + 1,
+                }}
+              >
+                <Character
+                  who={actor.who === "child" ? "child" : cast.role}
+                  hair={actor.who === "child" ? cast.childHair : cast.parentHair}
+                  skin={actor.who === "child" ? cast.childSkin : cast.parentSkin}
+                  pose={actor.pose}
+                  flip={actor.flip}
+                />
+              </div>
+            ))}
+          </>
+        )}
       </div>
     </figure>
   );

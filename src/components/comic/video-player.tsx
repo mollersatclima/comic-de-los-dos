@@ -250,10 +250,25 @@ function TitleSlide({
   end: boolean;
 }) {
   const issue = STORIES.findIndex((item) => item.id === story.id) + 1;
+  const coverArt = !end ? story.coverArt : "/art/scene-3b.png";
   return (
     <div className="relative flex min-h-[460px] flex-col overflow-hidden border-[4px] border-ink bg-[#8ecae6] shadow-[8px_8px_0_#1b2a4a]">
-      <Scene id={end ? "garden-hug" : story.cover} />
-      <div className="halftone pointer-events-none absolute inset-0" />
+      {coverArt ? (
+        <>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={coverArt}
+            alt=""
+            className="absolute inset-0 h-full w-full object-cover object-center"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#1b2a4a]/45 via-transparent to-[#1b2a4a]/60" />
+        </>
+      ) : (
+        <>
+          <Scene id={end ? "garden-hug" : story.cover} />
+          <div className="halftone pointer-events-none absolute inset-0" />
+        </>
+      )}
       <div className="relative z-20 px-4 pt-6 text-center">
         <div className="mx-auto max-w-md border-[3px] border-ink bg-sheet/95 px-4 py-4 shadow-[4px_4px_0_#1b2a4a]">
           <p className="font-comic text-xs font-bold tracking-[0.16em] uppercase">
@@ -267,33 +282,35 @@ function TitleSlide({
           </p>
         </div>
       </div>
-      <div className="relative z-10 mt-auto h-56">
-        {story.id === "espejo" && !end ? (
-          <>
-            <div className="absolute bottom-0 left-[8%] h-full" style={{ aspectRatio: "160 / 230" }}>
-              <Character who={cast.role} hair={cast.parentHair} skin={cast.parentSkin} pose="wave" />
-            </div>
-            <div className="absolute right-[8%] bottom-0 h-[92%]" style={{ aspectRatio: "160 / 230" }}>
-              <Character who="child" hair={cast.childHair} skin={cast.childSkin} pose="wave" flip />
-            </div>
-          </>
-        ) : (
-          <>
-            <div className="absolute bottom-0 left-[10%] h-[92%]" style={{ aspectRatio: "160 / 230" }}>
-              <Character who="child" hair={cast.childHair} skin={cast.childSkin} pose={end ? "hug" : "wave"} />
-            </div>
-            <div className="absolute right-[10%] bottom-0 h-full" style={{ aspectRatio: "160 / 230" }}>
-              <Character
-                who={cast.role}
-                hair={cast.parentHair}
-                skin={cast.parentSkin}
-                pose={end ? "hug" : "wave"}
-                flip
-              />
-            </div>
-          </>
-        )}
-      </div>
+      {!coverArt && (
+        <div className="relative z-10 mt-auto h-56">
+          {story.id === "espejo" && !end ? (
+            <>
+              <div className="absolute bottom-0 left-[8%] h-full" style={{ aspectRatio: "160 / 230" }}>
+                <Character who={cast.role} hair={cast.parentHair} skin={cast.parentSkin} pose="wave" />
+              </div>
+              <div className="absolute right-[8%] bottom-0 h-[92%]" style={{ aspectRatio: "160 / 230" }}>
+                <Character who="child" hair={cast.childHair} skin={cast.childSkin} pose="wave" flip />
+              </div>
+            </>
+          ) : (
+            <>
+              <div className="absolute bottom-0 left-[10%] h-[92%]" style={{ aspectRatio: "160 / 230" }}>
+                <Character who="child" hair={cast.childHair} skin={cast.childSkin} pose={end ? "hug" : "wave"} />
+              </div>
+              <div className="absolute right-[10%] bottom-0 h-full" style={{ aspectRatio: "160 / 230" }}>
+                <Character
+                  who={cast.role}
+                  hair={cast.parentHair}
+                  skin={cast.parentSkin}
+                  pose={end ? "hug" : "wave"}
+                  flip
+                />
+              </div>
+            </>
+          )}
+        </div>
+      )}
     </div>
   );
 }
