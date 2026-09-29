@@ -250,7 +250,9 @@ function TitleSlide({
   end: boolean;
 }) {
   const issue = STORIES.findIndex((item) => item.id === story.id) + 1;
-  const coverArt = !end ? story.coverArt : "/art/scene-3b.png";
+  const lastPage = story.pages[story.pages.length - 1];
+  const lastPanel = lastPage?.panels[lastPage.panels.length - 1];
+  const coverArt = !end ? story.coverArt : (lastPanel?.art ?? story.coverArt ?? "/art/scene-3b.png");
   return (
     <div className="relative flex min-h-[460px] flex-col overflow-hidden border-[4px] border-ink bg-[#8ecae6] shadow-[8px_8px_0_#1b2a4a]">
       {coverArt ? (
