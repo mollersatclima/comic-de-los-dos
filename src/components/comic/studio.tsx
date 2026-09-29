@@ -110,13 +110,13 @@ export function Studio() {
 
   return (
     <div className="min-h-dvh text-ink">
-      <header className="no-print mx-auto flex w-full max-w-5xl items-center justify-between gap-3 px-4 py-4">
+      <header className="no-print mx-auto flex w-full max-w-5xl flex-wrap items-center justify-between gap-3 px-4 py-4">
         <button
           type="button"
           onClick={() => patch({ step: "taller" })}
           className="text-left"
         >
-          <span className="block font-display text-2xl leading-none tracking-wide">
+          <span className="block font-display text-2xl leading-none tracking-wide whitespace-nowrap">
             Cómic de los dos
           </span>
           <span className="font-comic text-sm text-muted-foreground">
@@ -536,7 +536,7 @@ function Reader({
             </div>
           )}
           {atEnd && (
-            <p className="mt-4 rotate-[-8deg] text-right font-display text-5xl text-comic-red">
+            <p className="mt-3 pr-1 text-right font-display text-4xl tracking-wide text-comic-red">
               FIN
             </p>
           )}
@@ -651,22 +651,26 @@ function CoverCard({
   issue?: number;
 }) {
   return (
-    <div className="relative min-h-[460px] overflow-hidden border-[3px] border-ink bg-[#8ecae6]">
+    <div className="relative flex min-h-[520px] flex-col overflow-hidden border-[3px] border-ink bg-[#8ecae6]">
       <Scene id="garden" />
       <div className="halftone pointer-events-none absolute inset-0" />
-      <div className="relative z-10 flex flex-col items-center px-4 pt-6 text-center">
+      <div className="relative z-20 flex flex-col items-center px-4 pt-5 text-center">
         <div className="w-full max-w-md border-[3px] border-ink bg-sheet/95 px-4 py-4 shadow-[4px_4px_0_#1c1917]">
           <p className="font-comic text-xs font-bold tracking-[0.18em] uppercase">
             {issue ? `N.º ${issue} · para leer juntos` : kicker}
           </p>
-          <h2 className="mt-1 font-display text-4xl leading-[0.95] sm:text-5xl">{title}</h2>
-          <p className="mt-2 font-comic text-lg leading-snug font-bold">
+          <h2 className="mt-1 font-display text-4xl leading-[0.95] text-balance sm:text-5xl">{title}</h2>
+          <p className="mt-2 font-comic text-lg leading-snug font-bold text-balance">
             {displayChild(cast.childName)} y {displayParent(cast.parentName, cast.role)}
           </p>
-          <p className="font-comic text-base">Para quien colecciona {cast.favorite}.</p>
+          <p className="font-comic text-base text-balance">
+            Para quien colecciona {cast.favorite}.
+          </p>
         </div>
       </div>
-      <CastOnScene cast={cast} />
+      <div className="relative z-10 mt-auto h-60 sm:h-72">
+        <CastOnScene cast={cast} />
+      </div>
     </div>
   );
 }
@@ -674,10 +678,10 @@ function CoverCard({
 function CastOnScene({ cast }: { cast: Cast }) {
   return (
     <>
-      <div className="absolute bottom-0 left-[8%] z-10 h-[58%] max-h-72" style={{ aspectRatio: "160 / 230" }}>
+      <div className="absolute bottom-0 left-[8%] z-10 h-[92%]" style={{ aspectRatio: "160 / 230" }}>
         <Character who="child" hair={cast.childHair} skin={cast.childSkin} pose="wave" />
       </div>
-      <div className="absolute right-[8%] bottom-0 z-10 h-[64%] max-h-80" style={{ aspectRatio: "160 / 230" }}>
+      <div className="absolute right-[8%] bottom-0 z-10 h-full" style={{ aspectRatio: "160 / 230" }}>
         <Character who={cast.role} hair={cast.parentHair} skin={cast.parentSkin} pose="wave" flip />
       </div>
     </>

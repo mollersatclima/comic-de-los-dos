@@ -16,7 +16,7 @@ const POSE: Record<
   wave: { dy: 0, leftArm: 12, rightArm: -158, leftLeg: 4, rightLeg: -6, leg: 40 },
   point: { dy: 0, leftArm: 18, rightArm: -78, leftLeg: 6, rightLeg: -4, leg: 40 },
   cheer: { dy: -4, leftArm: 158, rightArm: -156, leftLeg: -8, rightLeg: 10, leg: 40 },
-  hug: { dy: 0, leftArm: 58, rightArm: -58, leftLeg: 3, rightLeg: -3, leg: 40 },
+  hug: { dy: 0, leftArm: 16, rightArm: -78, leftLeg: 3, rightLeg: -3, leg: 40 },
   play: { dy: 0, leftArm: 36, rightArm: -108, leftLeg: 6, rightLeg: -8, leg: 40 },
   jump: { dy: -16, leftArm: 148, rightArm: -150, leftLeg: -24, rightLeg: 26, leg: 40 },
   peek: { dy: 2, leftArm: 20, rightArm: -118, leftLeg: 4, rightLeg: -4, leg: 40 },
@@ -101,10 +101,11 @@ export function Character({
         <ellipse cx="108" cy="76" rx="6" ry="3.2" fill="#e88888" opacity="0.4" />
         {dad && (
           <path
-            d="M58 80 Q80 104 102 80 Q94 90 80 92 Q66 90 58 80"
+            d="M58 84 Q80 114 102 84 Q94 100 80 102 Q66 100 58 84"
             fill={hair}
             stroke={INK}
             strokeWidth="3"
+            strokeLinejoin="round"
           />
         )}
         {child && (
@@ -204,32 +205,34 @@ function Clothes({ who, shirt }: { who: Who; shirt: string }) {
     return (
       <>
         <path
-          d="M46 102 Q80 90 114 102 L124 164 Q80 176 36 164 Z"
+          d="M48 104 Q80 92 112 104 L118 150 Q80 160 42 150 Z"
           fill={shirt}
           stroke={INK}
           strokeWidth={STROKE}
           strokeLinejoin="round"
         />
-        <path d="M80 108 L94 160 H66 Z" fill="#fff8ea" stroke={INK} strokeWidth="3" />
-        <path
-          d="M58 112 H74"
-          fill="none"
-          stroke={INK}
-          strokeWidth="3"
-          strokeLinecap="round"
-        />
+        <path d="M80 110 L92 148 H68 Z" fill="#fff8ea" stroke={INK} strokeWidth="3" />
       </>
     );
   }
 
   return (
-    <path
-      d="M48 102 Q80 90 112 102 L122 166 Q80 178 38 166 Z"
-      fill={shirt}
-      stroke={INK}
-      strokeWidth={STROKE}
-      strokeLinejoin="round"
-    />
+    <>
+      <path
+        d="M50 104 Q80 94 110 104 L116 146 Q80 156 44 146 Z"
+        fill={shirt}
+        stroke={INK}
+        strokeWidth={STROKE}
+        strokeLinejoin="round"
+      />
+      <path
+        d="M70 108 L80 122 L90 108"
+        fill="none"
+        stroke="#fff6df"
+        strokeWidth="3"
+        strokeLinejoin="round"
+      />
+    </>
   );
 }
 
@@ -284,12 +287,12 @@ function Leg({
   shoe: string;
 }) {
   return (
-    <g transform={`rotate(${angle} ${ox} 168)`}>
+    <g transform={`rotate(${angle} ${ox} 152)`}>
       <rect
         x={ox - 8}
-        y={164}
+        y={146}
         width={16}
-        height={length}
+        height={length + 18}
         rx={8}
         fill={pants}
         stroke={INK}

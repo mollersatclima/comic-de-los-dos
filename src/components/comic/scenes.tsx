@@ -393,13 +393,16 @@ function Street({ variant }: { variant: "door" | "splash" | "look" | "leaf" | "h
       <circle cx="540" cy="64" r="28" fill="#ffd166" stroke={INK} strokeWidth="4" />
       {variant === "door" && (
         <>
-          <rect width="220" height="420" fill="#faedcd" />
-          <rect x="150" y="40" width="130" height="300" rx="4" fill="#8d99ae" stroke={INK} strokeWidth="5" />
-          <circle cx="258" cy="190" r="5" fill="#ffd166" stroke={INK} strokeWidth="2" />
+          <rect width="200" height="270" fill="#faedcd" />
+          <rect x="150" y="70" width="120" height="200" rx="4" fill="#8d99ae" stroke={INK} strokeWidth="5" />
+          <circle cx="250" cy="170" r="5" fill="#ffd166" stroke={INK} strokeWidth="2" />
         </>
       )}
       <path d="M0 250 H640 V420 H0 Z" fill="#8d99ae" stroke={INK} strokeWidth="4" />
       <path d="M0 310 H640 V420 H0 Z" fill="#6c757d" />
+      {variant === "door" && (
+        <ellipse cx="470" cy="360" rx="110" ry="26" fill="#8ecae6" stroke={INK} strokeWidth="4" />
+      )}
       {(variant === "splash" || variant === "look" || variant === "leaf") && (
         <ellipse cx="340" cy="350" rx="170" ry="42" fill="#8ecae6" stroke={INK} strokeWidth="4" />
       )}
