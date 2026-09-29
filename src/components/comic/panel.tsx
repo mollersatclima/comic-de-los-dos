@@ -38,7 +38,7 @@ export function PanelView({
     >
       <div className="relative z-20 flex flex-col gap-2 px-3 pt-3">
         {panel.caption && (
-          <figcaption className="max-w-full self-start border-[3px] border-ink bg-comic-yellow px-2.5 py-1 font-comic text-[15px] leading-snug font-bold text-ink shadow-[3px_3px_0_#1c1917]">
+          <figcaption className="max-w-full self-start border-[3px] border-ink bg-comic-yellow px-2.5 py-1 font-comic text-[15px] leading-snug font-bold text-ink shadow-[3px_3px_0_#1b2a4a]">
             {fill(panel.caption, cast)}
           </figcaption>
         )}
@@ -115,7 +115,12 @@ function Speech({
 }) {
   return (
     <div className={cn("relative max-w-full", side === "right" && "sm:justify-self-end")}>
-      <div className="relative rounded-[1.25rem] border-[3px] border-ink bg-white px-3 py-2 shadow-[3px_3px_0_#1c1917]">
+      <div
+        className={cn(
+          "relative rounded-[1.6rem] border-[3px] border-ink px-3 py-2 shadow-[3px_3px_0_#1b2a4a]",
+          side === "left" ? "bg-[#fff4f8]" : "bg-[#f3f7ff]",
+        )}
+      >
         <p
           className={cn(
             "font-display text-[11px] tracking-[0.14em] uppercase",
@@ -146,7 +151,8 @@ function Speech({
         <span
           aria-hidden
           className={cn(
-            "absolute -bottom-[11px] size-4 rotate-45 border-r-[3px] border-b-[3px] border-ink bg-white",
+            "absolute -bottom-[11px] size-4 rotate-45 border-r-[3px] border-b-[3px] border-ink",
+            side === "left" ? "bg-[#fff4f8]" : "bg-[#f3f7ff]",
             side === "left" ? "left-6" : "right-6",
           )}
         />

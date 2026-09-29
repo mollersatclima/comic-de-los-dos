@@ -124,7 +124,7 @@ export function VideoPlayer({
                 activeBubble={null}
                 onActivate={() => undefined}
                 onChange={() => undefined}
-                className="min-h-[460px] shadow-[8px_8px_0_#1c1917]"
+                className="min-h-[460px] shadow-[8px_8px_0_#1b2a4a]"
               />
             </div>
           ) : (
@@ -219,11 +219,11 @@ function TitleSlide({
 }) {
   const issue = STORIES.findIndex((item) => item.id === story.id) + 1;
   return (
-    <div className="relative flex min-h-[460px] flex-col overflow-hidden border-[4px] border-ink bg-[#8ecae6] shadow-[8px_8px_0_#1c1917]">
+    <div className="relative flex min-h-[460px] flex-col overflow-hidden border-[4px] border-ink bg-[#8ecae6] shadow-[8px_8px_0_#1b2a4a]">
       <Scene id={end ? "garden-hug" : story.cover} />
       <div className="halftone pointer-events-none absolute inset-0" />
       <div className="relative z-20 px-4 pt-6 text-center">
-        <div className="mx-auto max-w-md border-[3px] border-ink bg-sheet/95 px-4 py-4 shadow-[4px_4px_0_#1c1917]">
+        <div className="mx-auto max-w-md border-[3px] border-ink bg-sheet/95 px-4 py-4 shadow-[4px_4px_0_#1b2a4a]">
           <p className="font-comic text-xs font-bold tracking-[0.16em] uppercase">
             {end ? "Así termina" : `N.º ${issue} · para ver juntos`}
           </p>

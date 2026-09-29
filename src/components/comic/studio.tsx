@@ -123,7 +123,7 @@ export function Studio() {
             Cómic de los dos
           </span>
           <span className="font-comic text-sm text-muted-foreground">
-            Una historia para leer en voz alta
+            Dibujada suavecito, al estilo de Stitch
           </span>
         </button>
         <div className="flex items-center gap-2">
@@ -211,7 +211,7 @@ function Setup({
     <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
       <CoverCard cast={cast} title="Las aventuras de hoy" kicker="N.º 0 · Portada" />
       <form
-        className="space-y-6 border-[3px] border-ink bg-sheet p-4 shadow-[6px_6px_0_#1c1917] sm:p-6"
+        className="space-y-6 border-[3px] border-ink bg-sheet p-4 shadow-[6px_6px_0_#1b2a4a] sm:p-6"
         onSubmit={(event) => {
           event.preventDefault();
           if (namesReady) onContinue();
@@ -241,7 +241,7 @@ function Setup({
                 aria-checked={cast.role === role}
                 onClick={() => onCast({ role })}
                 className={cn(
-                  "h-12 border-[3px] border-ink font-comic text-lg font-bold shadow-[3px_3px_0_#1c1917]",
+                  "h-12 border-[3px] border-ink font-comic text-lg font-bold shadow-[3px_3px_0_#1b2a4a]",
                   cast.role === role ? "bg-ink text-sheet" : "bg-white",
                 )}
               >
@@ -318,7 +318,7 @@ function Setup({
                   onClick={() => onCast({ favorite: favorite.phrase })}
                   className={cn(
                     "border-[3px] border-ink px-3 py-1.5 font-comic text-base font-bold",
-                    selected ? "bg-comic-yellow shadow-[3px_3px_0_#1c1917]" : "bg-white",
+                    selected ? "bg-comic-yellow shadow-[3px_3px_0_#1b2a4a]" : "bg-white",
                   )}
                 >
                   {favorite.phrase}
@@ -414,7 +414,7 @@ function Picker({
         {STORIES.map((story, index) => (
           <article
             key={story.id}
-            className="flex flex-col border-[3px] border-ink bg-sheet shadow-[5px_5px_0_#1c1917] motion-safe:transition-transform motion-safe:hover:-translate-y-0.5"
+            className="flex flex-col border-[3px] border-ink bg-sheet shadow-[5px_5px_0_#1b2a4a] motion-safe:transition-transform motion-safe:hover:-translate-y-0.5"
           >
             <div className="relative h-40 overflow-hidden border-b-[3px] border-ink">
               <Scene id={story.cover} />
@@ -520,7 +520,7 @@ function Reader({
         </div>
       </div>
 
-      <div className="comic-sheet no-print flex overflow-hidden border-[4px] border-ink bg-sheet shadow-[8px_8px_0_#1c1917]">
+      <div className="comic-sheet no-print flex overflow-hidden border-[4px] border-ink bg-sheet shadow-[8px_8px_0_#1b2a4a]">
         <div className="hidden w-7 shrink-0 bg-[#9b2331] sm:block" />
         <div className="min-w-0 flex-1 p-3 sm:p-5">
           {atStart || !page ? (
@@ -680,7 +680,7 @@ function CoverCard({
       <Scene id={scene} />
       <div className="halftone pointer-events-none absolute inset-0" />
       <div className="relative z-20 flex flex-col items-center px-4 pt-5 text-center">
-        <div className="w-full max-w-md border-[3px] border-ink bg-sheet/95 px-4 py-4 shadow-[4px_4px_0_#1c1917]">
+        <div className="w-full max-w-md border-[3px] border-ink bg-sheet/95 px-4 py-4 shadow-[4px_4px_0_#1b2a4a]">
           <p className="font-comic text-xs font-bold tracking-[0.18em] uppercase">
             {issue ? `N.º ${issue} · para leer juntos` : kicker}
           </p>
