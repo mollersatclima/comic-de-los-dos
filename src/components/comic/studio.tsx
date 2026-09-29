@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { Character } from "@/components/comic/character";
 import { PanelView } from "@/components/comic/panel";
 import { Scene } from "@/components/comic/scenes";
@@ -39,6 +39,7 @@ import {
   type SceneId,
 } from "@/lib/comic";
 import { optionLabel, say, t } from "@/lib/i18n";
+import { scoreIsOn, scoreServerOff, setBed, setScore, subscribeScore } from "@/lib/score";
 import { STORIES, getStory } from "@/lib/stories";
 import { cn } from "@/lib/utils";
 
@@ -514,6 +515,8 @@ function Reader({
   const lang = state.lang === "es" ? "es" : "pt";
   const page = state.pageIndex >= 0 ? story.pages[state.pageIndex] : null;
   const [video, setVideo] = useState(false);
+  const music = useSyncExternalStore(subscribeScore, scoreIsOn, scoreServerOff);
+  const musicWasOn = useRef(false);
 
   return (
     <div className="space-y-4">
@@ -545,9 +548,22 @@ function Reader({
           <Button
             type="button"
             className="h-10 font-display"
-            onClick={() => setVideo(true)}
+            onClick={() => {
+              musicWasOn.current = scoreIsOn();
+              setScore(true);
+              setVideo(true);
+            }}
           >
             {t(lang, "watchVideo")}
+          </Button>
+          <Button
+            type="button"
+            variant={music ? "default" : "outline"}
+            className="h-10 border-[3px] border-ink font-comic"
+            aria-pressed={music}
+            onClick={() => setScore(!music)}
+          >
+            {music ? t(lang, "musicOn") : t(lang, "musicOff")}
           </Button>
           <Button
             type="button"
@@ -670,7 +686,11 @@ function Reader({
           story={story}
           lang={lang}
           edits={state.edits}
-          onClose={() => setVideo(false)}
+          onClose={() => {
+            if (musicWasOn.current) setBed("play");
+            else setScore(false);
+            setVideo(false);
+          }}
         />
       )}
 

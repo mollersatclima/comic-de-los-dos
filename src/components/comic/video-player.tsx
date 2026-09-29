@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import { Character } from "@/components/comic/character";
 import { PanelView } from "@/components/comic/panel";
 import { Scene } from "@/components/comic/scenes";
@@ -14,6 +14,7 @@ import {
   type Story,
 } from "@/lib/comic";
 import { say, t } from "@/lib/i18n";
+import { scoreIsOn, scoreServerOff, setBed, setScore, subscribeScore } from "@/lib/score";
 import { STORIES } from "@/lib/stories";
 
 type Slide = {
@@ -41,8 +42,9 @@ export function VideoPlayer({
   const slides = useMemo(() => buildSlides(story, cast, lang, edits), [story, cast, lang, edits]);
   const [index, setIndex] = useState(0);
   const [playing, setPlaying] = useState(true);
-  const [voice, setVoice] = useState(false);
+  const [voice, setVoice] = useState(true);
   const [chrome, setChrome] = useState(true);
+  const music = useSyncExternalStore(subscribeScore, scoreIsOn, scoreServerOff);
   const slide = slides[Math.min(index, slides.length - 1)];
 
   useEffect(() => {
@@ -61,6 +63,21 @@ export function VideoPlayer({
     speak(slide.speech, t(lang, "speechLang"));
     return () => window.speechSynthesis?.cancel();
   }, [voice, playing, slide.speech, lang]);
+
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      if (!scoreIsOn()) return;
+      if (!playing) {
+        setBed("quiet");
+        return;
+      }
+      const speaking =
+        voice &&
+        (window.speechSynthesis?.speaking || window.speechSynthesis?.pending);
+      setBed(speaking ? "talk" : "play");
+    }, 140);
+    return () => window.clearInterval(id);
+  }, [playing, voice]);
 
   useEffect(() => {
     function onKey(event: KeyboardEvent) {
@@ -185,6 +202,15 @@ export function VideoPlayer({
               onClick={() => setVoice((value) => !value)}
             >
               {voice ? t(lang, "voiceOn") : t(lang, "voiceOff")}
+            </Button>
+            <Button
+              type="button"
+              variant={music ? "default" : "outline"}
+              className="h-10 border-[3px] border-ink font-comic"
+              aria-pressed={music}
+              onClick={() => setScore(!music)}
+            >
+              {music ? t(lang, "musicOn") : t(lang, "musicOff")}
             </Button>
             <Button
               type="button"
