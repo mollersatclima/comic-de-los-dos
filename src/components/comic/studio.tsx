@@ -257,7 +257,7 @@ function Setup({
               id="parent-name"
               value={cast.parentName}
               maxLength={18}
-              placeholder={cast.role === "mama" ? "Ana" : "Mateo"}
+              placeholder="Nicolas"
               onChange={(event) => onCast({ parentName: event.target.value })}
               className="h-11 border-[3px] border-ink bg-white font-comic text-base"
             />
@@ -270,7 +270,7 @@ function Setup({
               id="child-name"
               value={cast.childName}
               maxLength={18}
-              placeholder="Sofía"
+              placeholder="Aynara"
               onChange={(event) => onCast({ childName: event.target.value })}
               className="h-11 border-[3px] border-ink bg-white font-comic text-base"
             />

@@ -336,6 +336,19 @@ function Animal({ x, y, kind }: { x: number; y: number; kind: "bear" | "bunny" |
   );
 }
 
+function StitchPlush({ x, y }: { x: number; y: number }) {
+  return (
+    <g>
+      <ellipse cx={x - 16} cy={y - 4} rx="7" ry="12" fill="#3a7de8" stroke={INK} strokeWidth="3" />
+      <ellipse cx={x + 16} cy={y - 4} rx="7" ry="12" fill="#3a7de8" stroke={INK} strokeWidth="3" />
+      <circle cx={x} cy={y + 6} r="15" fill="#4c94f5" stroke={INK} strokeWidth="3" />
+      <ellipse cx={x - 5} cy={y + 4} rx="3.2" ry="4.2" fill={INK} />
+      <ellipse cx={x + 6} cy={y + 4} rx="3.2" ry="4.2" fill={INK} />
+      <ellipse cx={x} cy={y + 12} rx="4" ry="2.4" fill="#1d3557" />
+    </g>
+  );
+}
+
 function Pot({ x, y, scale = 1 }: { x: number; y: number; scale?: number }) {
   return (
     <g transform={`translate(${x} ${y}) scale(${scale})`}>
@@ -358,7 +371,7 @@ function Bedroom({ variant }: { variant: "day" | "sleep" | "band" | "concert" | 
       {(variant === "band" || variant === "bow" || variant === "day") && (
         <>
           <Animal x={120} y={176} kind="bear" />
-          <Animal x={170} y={176} kind="bunny" />
+          <StitchPlush x={168} y={170} />
           <Animal x={214} y={168} kind="star" />
         </>
       )}

@@ -304,7 +304,7 @@ export const STORIES: Story[] = [
                 text: "Tengo la mejor entrada: este cojín.",
               },
             ],
-            actors: pair("cheer", "kneel"),
+            actors: pair("cheer", "stand"),
           },
           {
             id: "con-1b",

@@ -20,7 +20,7 @@ const POSE: Record<
   play: { dy: 0, leftArm: 36, rightArm: -108, leftLeg: 6, rightLeg: -8, leg: 40 },
   jump: { dy: -16, leftArm: 148, rightArm: -150, leftLeg: -24, rightLeg: 26, leg: 40 },
   peek: { dy: 2, leftArm: 20, rightArm: -118, leftLeg: 4, rightLeg: -4, leg: 40 },
-  kneel: { dy: 14, leftArm: 24, rightArm: -20, leftLeg: 48, rightLeg: -42, leg: 22 },
+  kneel: { dy: 8, leftArm: 22, rightArm: -18, leftLeg: 16, rightLeg: -14, leg: 32 },
 };
 
 export function Character({
@@ -39,10 +39,9 @@ export function Character({
   const poseData = POSE[pose];
   const child = who === "child";
   const dad = who === "papa";
-  const shirt = child ? "#f4b942" : dad ? "#1d3557" : "#e07a5f";
-  const pants = child ? skin : dad ? "#c4a574" : "#1d3557";
+  const shirt = child ? "#ef5d56" : dad ? "#f4efe6" : "#e07a5f";
+  const pants = child ? skin : dad ? "#8a7a58" : "#1d3557";
   const shoe = child ? "#d62828" : dad ? "#3d2b1f" : "#6b3a22";
-  const bow = hair.toLowerCase() === "#c4491d" ? "#ffe08a" : "#d62828";
   const openMouth = pose === "cheer" || pose === "jump";
 
   return (
@@ -98,22 +97,21 @@ export function Character({
           />
         )}
         <ellipse cx="52" cy="76" rx="6" ry="3.2" fill="#e88888" opacity="0.4" />
-        <ellipse cx="108" cy="76" rx="6" ry="3.2" fill="#e88888" opacity="0.4" />
+        <ellipse cx="108" cy="76" rx="6" ry="3.2" fill="#e88888" opacity="0.35" />
         {dad && (
-          <path
-            d="M58 84 Q80 114 102 84 Q94 100 80 102 Q66 100 58 84"
-            fill={hair}
-            stroke={INK}
-            strokeWidth="3"
-            strokeLinejoin="round"
-          />
-        )}
-        {child && (
-          <g transform="translate(112 62)">
-            <ellipse cx="-9" cy="0" rx="8" ry="5.5" fill={bow} stroke={INK} strokeWidth="2.4" />
-            <ellipse cx="9" cy="0" rx="8" ry="5.5" fill={bow} stroke={INK} strokeWidth="2.4" />
-            <circle r="4.2" fill={bow} stroke={INK} strokeWidth="2.4" />
-          </g>
+          <>
+            <rect x="50" y="57" width="24" height="16" rx="4" fill="none" stroke={INK} strokeWidth="2.6" />
+            <rect x="86" y="57" width="24" height="16" rx="4" fill="none" stroke={INK} strokeWidth="2.6" />
+            <path d="M74 65 H86" stroke={INK} strokeWidth="2.6" />
+            <path d="M66 74 Q74 79 80 74 Q86 79 94 74" fill={hair} />
+            <path
+              d="M62 82 Q66 98 80 102 Q94 98 98 82 Q92 90 80 91 Q68 90 62 82"
+              fill={hair}
+              stroke={INK}
+              strokeWidth="2.4"
+              strokeLinejoin="round"
+            />
+          </>
         )}
       </g>
     </svg>
@@ -124,7 +122,7 @@ function HairBack({ who, hair }: { who: Who; hair: string }) {
   if (who === "papa") {
     return (
       <path
-        d="M50 58 Q48 28 80 24 Q112 28 110 58 Q104 36 80 34 Q56 36 50 58"
+        d="M52 56 Q48 18 80 14 Q116 18 110 56 Q104 30 80 26 Q58 30 52 56"
         fill={hair}
         stroke={INK}
         strokeWidth={STROKE}
@@ -144,13 +142,22 @@ function HairBack({ who, hair }: { who: Who; hair: string }) {
     );
   }
   return (
-    <path
-      d="M46 66 Q40 28 80 22 Q120 28 114 70 Q108 40 80 36 Q54 40 46 66"
-      fill={hair}
-      stroke={INK}
-      strokeWidth={STROKE}
-      strokeLinejoin="round"
-    />
+    <>
+      <path
+        d="M42 78 Q32 128 50 146 Q80 118 110 146 Q128 128 118 74 Q112 20 80 14 Q48 20 42 78"
+        fill={hair}
+        stroke={INK}
+        strokeWidth={STROKE}
+        strokeLinejoin="round"
+      />
+      <path
+        d="M74 18 C78 -2 96 2 88 20"
+        fill={hair}
+        stroke={INK}
+        strokeWidth="3"
+        strokeLinejoin="round"
+      />
+    </>
   );
 }
 
@@ -159,6 +166,17 @@ function HairFront({ who, hair }: { who: Who; hair: string }) {
     return (
       <path
         d="M52 52 Q80 36 108 52 Q100 46 80 46 Q60 46 52 52"
+        fill={hair}
+        stroke={INK}
+        strokeWidth="3"
+        strokeLinejoin="round"
+      />
+    );
+  }
+  if (who === "child") {
+    return (
+      <path
+        d="M50 60 Q66 42 82 54 Q104 40 114 64 Q98 50 76 56 Q58 50 50 60"
         fill={hair}
         stroke={INK}
         strokeWidth="3"
@@ -188,8 +206,10 @@ function Clothes({ who, shirt }: { who: Who; shirt: string }) {
           strokeWidth={STROKE}
           strokeLinejoin="round"
         />
-        <path d="M60 118 H102" stroke="#fff8ea" strokeWidth="6" strokeLinecap="round" />
-        <path d="M56 132 H106" stroke="#fff8ea" strokeWidth="6" strokeLinecap="round" />
+        <Star x={68} y={122} />
+        <Star x={90} y={118} />
+        <Star x={78} y={136} />
+        <Star x={100} y={134} />
         <path
           d="M48 146 H112 L118 176 Q80 188 42 176 Z"
           fill="#3d5a80"
@@ -217,22 +237,25 @@ function Clothes({ who, shirt }: { who: Who; shirt: string }) {
   }
 
   return (
-    <>
-      <path
-        d="M50 104 Q80 94 110 104 L116 146 Q80 156 44 146 Z"
-        fill={shirt}
-        stroke={INK}
-        strokeWidth={STROKE}
-        strokeLinejoin="round"
-      />
-      <path
-        d="M70 108 L80 122 L90 108"
-        fill="none"
-        stroke="#fff6df"
-        strokeWidth="3"
-        strokeLinejoin="round"
-      />
-    </>
+    <path
+      d="M50 104 Q80 94 110 104 L116 148 Q80 158 44 148 Z"
+      fill={shirt}
+      stroke={INK}
+      strokeWidth={STROKE}
+      strokeLinejoin="round"
+    />
+  );
+}
+
+function Star({ x, y }: { x: number; y: number }) {
+  return (
+    <path
+      d={`M${x} ${y - 6} L${x + 1.8} ${y - 1.6} L${x + 6.2} ${y - 1.2} L${x + 2.8} ${y + 2} L${x + 3.8} ${y + 6.4} L${x} ${y + 3.6} L${x - 3.8} ${y + 6.4} L${x - 2.8} ${y + 2} L${x - 6.2} ${y - 1.2} L${x - 1.8} ${y - 1.6} Z`}
+      fill="#fff8ea"
+      stroke={INK}
+      strokeWidth="1.4"
+      strokeLinejoin="round"
+    />
   );
 }
 

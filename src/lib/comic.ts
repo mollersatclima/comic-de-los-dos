@@ -95,7 +95,7 @@ export type ComicState = {
 };
 
 export const HAIR = [
-  { id: "castano", label: "Castaño", color: "#6b3a22" },
+  { id: "castano", label: "Castaño", color: "#7a5132" },
   { id: "negro", label: "Negro", color: "#241c16" },
   { id: "rubio", label: "Rubio", color: "#e2b657" },
   { id: "rojo", label: "Pelirrojo", color: "#c4491d" },
@@ -111,6 +111,7 @@ export const SKIN = [
 ] as const;
 
 export const FAVORITES = [
+  { id: "stitch", phrase: "Stitch" },
   { id: "estrellas", phrase: "las estrellas" },
   { id: "galletas", phrase: "las galletas" },
   { id: "dinosaurios", phrase: "los dinosaurios" },
@@ -119,18 +120,18 @@ export const FAVORITES = [
   { id: "cuentos", phrase: "los cuentos" },
 ] as const;
 
-const STORAGE_KEY = "comic-de-los-dos-v1";
+const STORAGE_KEY = "comic-de-los-dos-v2";
 const STORAGE_EVENT = "comic-de-los-dos-change";
 
 export function defaultCast(): Cast {
   return {
-    role: "mama",
-    parentName: "",
-    childName: "",
+    role: "papa",
+    parentName: "Nicolas",
+    childName: "Aynara",
     parentHair: HAIR[1].color,
     childHair: HAIR[0].color,
     parentSkin: SKIN[1].color,
-    childSkin: SKIN[1].color,
+    childSkin: SKIN[0].color,
     favorite: FAVORITES[0].phrase,
   };
 }
