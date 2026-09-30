@@ -14,13 +14,17 @@ const PT: Record<string, string> = {
   "¡Te veo dentro del marco!": "Estou te vendo dentro da moldura!",
   "El camino es corto. Ya huelo tu cuarto.": "O caminho é curtinho. Já sinto o cheiro do seu quarto.",
   "Del otro lado estaba Brasil.": "Do outro lado estava o Brasil.",
-  "¡Llegaste! Stitch también te esperaba.": "Você chegou! O Stitch também estava te esperando.",
-  "Un parpadeo, y ya estoy contigo.": "Um piscar de olhos, e eu já estou com você.",
-  "¿Mañana el espejo abre otra vez?": "Amanhã o espelho abre de novo?",
-  "Cada vez que lo miremos juntos.": "Toda vez que a gente olhar junto.",
-  "El marco guardó el camino entre los dos países.": "A moldura guardou o caminho entre os dois países.",
-  "Te quiero, aunque vivas en España.": "Eu te amo, mesmo você morando na Espanha.",
-  "Y yo a ti. Brasil queda a un espejo.": "E eu te amo. O Brasil fica a um espelho de distância.",
+  "¡Llegaste! ¡Stitch y yo estábamos esperándote con los brazos abiertos!":
+    "Você chegou! O Stitch e eu estávamos te esperando de braços abertos!",
+  "Un parpadeo, y ya estoy aquí con los dos.": "Um piscar de olhos, e eu já estou aqui com vocês dois.",
+  "Stitch come galletas y no quiere que te vayas nunca.":
+    "O Stitch come biscoitos e não quer que você vá embora nunca.",
+  "El espejo mágico siempre nos reunirá cuando lo miremos.":
+    "O espelho mágico sempre vai nos reunir toda vez que a gente olhar.",
+  "¡Abrazo gigante! Te quiero con todo mi corazón, papá.":
+    "Abraço gigante! Eu te amo com todo o meu coração, papai.",
+  "Y yo a ti, Aynara. Brasil y España quedan a un solo paso.":
+    "E eu a você, Aynara. O Brasil e a Espanha ficam a só um passo.",
 
   "El mapa del limonero": "O mapa do limoeiro",
   "Un mapa con crayón los lleva hasta un tesoro que cabe en una caja de galletas.":

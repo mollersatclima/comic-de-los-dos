@@ -29,7 +29,7 @@ export const STORIES: Story[] = [
     blurb:
       "Aynara vive en Brasil y Nicolas en España. Un espejo mágico abre el camino para verse.",
     cover: "mirror-glow",
-    coverArt: "/art/scene-cover.png",
+    coverArt: "/art/scene-cover.jpg",
     pages: [
       {
         id: "esp-1",
@@ -56,7 +56,7 @@ export const STORIES: Story[] = [
           {
             id: "esp-1b",
             scene: "mirror-glow",
-            art: "/art/scene-1b.png",
+            art: "/art/scene-1b.jpg",
             sfx: "¡brilla!",
             bubbles: [
               {
@@ -80,7 +80,7 @@ export const STORIES: Story[] = [
           {
             id: "esp-2a",
             scene: "mirror-cross",
-            art: "/art/scene-2a.png",
+            art: "/art/scene-2a.jpg",
             caption: "Nicolas dio un paso, y España se quedó atrás.",
             bubbles: [
               {
@@ -99,18 +99,18 @@ export const STORIES: Story[] = [
           {
             id: "esp-2b",
             scene: "mirror-brazil",
-            art: "/art/scene-2b.png",
+            art: "/art/scene-2b.jpg",
             caption: "Del otro lado estaba Brasil.",
             bubbles: [
               {
                 id: "esp-2b-c",
                 speaker: "child",
-                text: "¡Llegaste! Stitch también te esperaba.",
+                text: "¡Llegaste! ¡Stitch y yo estábamos esperándote con los brazos abiertos!",
               },
               {
                 id: "esp-2b-p",
                 speaker: "parent",
-                text: "Un parpadeo, y ya estoy contigo.",
+                text: "Un parpadeo, y ya estoy aquí con los dos.",
               },
             ],
             actors: pair("cheer", "wave"),
@@ -123,17 +123,17 @@ export const STORIES: Story[] = [
           {
             id: "esp-3a",
             scene: "mirror-brazil",
-            art: "/art/scene-3a.png",
+            art: "/art/scene-3a.jpg",
             bubbles: [
               {
                 id: "esp-3a-c",
                 speaker: "child",
-                text: "¿Mañana el espejo abre otra vez?",
+                text: "Stitch come galletas y no quiere que te vayas nunca.",
               },
               {
                 id: "esp-3a-p",
                 speaker: "parent",
-                text: "Cada vez que lo miremos juntos.",
+                text: "El espejo mágico siempre nos reunirá cuando lo miremos.",
               },
             ],
             actors: pair("peek", "stand"),
@@ -141,18 +141,18 @@ export const STORIES: Story[] = [
           {
             id: "esp-3b",
             scene: "mirror-bye",
-            art: "/art/scene-3b.png",
+            art: "/art/scene-3b.jpg",
             caption: "El marco guardó el camino entre los dos países.",
             bubbles: [
               {
                 id: "esp-3b-c",
                 speaker: "child",
-                text: "Te quiero, aunque vivas en España.",
+                text: "¡Abrazo gigante! Te quiero con todo mi corazón, papá.",
               },
               {
                 id: "esp-3b-p",
                 speaker: "parent",
-                text: "Y yo a ti. Brasil queda a un espejo.",
+                text: "Y yo a ti, Aynara. Brasil y España quedan a un solo paso.",
               },
             ],
             actors: apart("hug", "hug"),
@@ -167,7 +167,7 @@ export const STORIES: Story[] = [
     blurb:
       "Un mapa con crayón los lleva hasta un tesoro que cabe en una caja de galletas.",
     cover: "garden",
-    coverArt: "/art/scene-lim-cover.png",
+    coverArt: "/art/scene-lim-cover.jpg",
     pages: [
       {
         id: "lim-1",
@@ -305,7 +305,7 @@ export const STORIES: Story[] = [
     blurb:
       "Un día de lluvia, dos sillas y una linterna alcanzan para llegar a la cocina.",
     cover: "fort",
-    coverArt: "/art/scene-man-cover.png",
+    coverArt: "/art/scene-man-cover.jpg",
     pages: [
       {
         id: "man-1",
@@ -442,7 +442,7 @@ export const STORIES: Story[] = [
     blurb:
       "Hay una banda, un público de una sola persona y un bis que no se puede saltar.",
     cover: "concert",
-    coverArt: "/art/scene-con-cover.png",
+    coverArt: "/art/scene-con-cover.jpg",
     pages: [
       {
         id: "con-1",
@@ -578,7 +578,7 @@ export const STORIES: Story[] = [
     blurb:
       "Después de la lluvia, las botas se vuelven barcos y la calle un mar chiquito.",
     cover: "puddle",
-    coverArt: "/art/scene-cha-cover.png",
+    coverArt: "/art/scene-cha-cover.jpg",
     pages: [
       {
         id: "cha-1",

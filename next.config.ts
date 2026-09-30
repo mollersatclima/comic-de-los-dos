@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   allowedDevOrigins: [
     "127.0.0.1",
-    "ellen-great-wma-permit.trycloudflare.com",
+    "crucial-ind-characteristics-currency.trycloudflare.com",
     "*.trycloudflare.com",
   ],
 };

@@ -267,7 +267,7 @@ function Setup({
           </p>
         </div>
 
-        <div className="mt-5 grid gap-6 md:grid-cols-2">
+        <div className="mt-5 grid gap-6 md:grid-cols-3">
           {/* Nicolas card */}
           <div className="overflow-hidden border-[3px] border-ink bg-white shadow-[4px_4px_0_#1b2a4a]">
             <div className="relative aspect-square w-full bg-[#f6ead4]">
@@ -285,7 +285,7 @@ function Setup({
               <div className="flex items-center justify-between">
                 <h3 className="font-display text-xl">Nicolas Moller</h3>
                 <span className="rounded bg-[#2a9d8f]/20 px-2 py-0.5 font-comic text-xs font-bold text-[#2a9d8f]">
-                  Madrid · Viajero del Espejo
+                  Madrid · Viajero
                 </span>
               </div>
               <p className="font-comic text-sm text-ink/80 leading-snug">
@@ -296,30 +296,58 @@ function Setup({
             </div>
           </div>
 
-          {/* Aynara card */}
+          {/* Aynara card (9 years old) */}
           <div className="overflow-hidden border-[3px] border-ink bg-white shadow-[4px_4px_0_#1b2a4a]">
             <div className="relative aspect-square w-full bg-[#f6ead4]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/art/avatar-aynara.png"
-                alt="Avatar Aynara anime"
+                src="/art/avatar-aynara-9yo.jpg"
+                alt="Avatar Aynara 9 años anime"
                 className="h-full w-full object-cover"
               />
               <span className="absolute top-3 left-3 bg-[#f59e0b] px-2.5 py-1 font-display text-xs text-ink shadow-[2px_2px_0_#1b2a4a]">
-                #02 · AYNARA (BRASIL)
+                #02 · AYNARA (9 ANOS)
               </span>
             </div>
             <div className="p-4 space-y-2">
               <div className="flex items-center justify-between">
                 <h3 className="font-display text-xl">Aynara Moller</h3>
                 <span className="rounded bg-[#e76f51]/20 px-2 py-0.5 font-comic text-xs font-bold text-[#e76f51]">
-                  Rio de Janeiro · Guardiã
+                  Rio · 9 anos
                 </span>
               </div>
               <p className="font-comic text-sm text-ink/80 leading-snug">
                 {lang === "pt"
-                  ? "Cabelo castanho ondulado com tufo no topo, olhos grandes expressivos, camiseta coral com estrelas e broche do Stitch. Esperando pelo abraço."
-                  : "Pelo castaño ondulado con mechón en la coronilla, grandes ojos expresivos, camiseta coral con estrellas y broche de Stitch. Esperando el abrazo."}
+                  ? "9 anos de idade! Rostinho doce e bochechas fofas, cabelo ondulado castanho, camiseta coral com estrelinhas e seu amigo Stitch sempre ao lado."
+                  : "¡9 años de edad! Carita dulce e infantil con mejillas suaves, pelo castaño ondulado, camiseta coral con estrellitas y su amigo Stitch siempre al lado."}
+              </p>
+            </div>
+          </div>
+
+          {/* Stitch companion card */}
+          <div className="overflow-hidden border-[3px] border-ink bg-white shadow-[4px_4px_0_#1b2a4a]">
+            <div className="relative aspect-square w-full bg-[#f6ead4]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/art/avatar-stitch.jpg"
+                alt="Avatar Stitch companheiro anime"
+                className="h-full w-full object-cover"
+              />
+              <span className="absolute top-3 left-3 bg-[#1d3557] px-2.5 py-1 font-display text-xs text-white shadow-[2px_2px_0_#1b2a4a]">
+                #03 · STITCH (COMPAÑERO)
+              </span>
+            </div>
+            <div className="p-4 space-y-2">
+              <div className="flex items-center justify-between">
+                <h3 className="font-display text-xl">Stitch</h3>
+                <span className="rounded bg-[#457b9d]/20 px-2 py-0.5 font-comic text-xs font-bold text-[#1d3557]">
+                  Fiel Companheiro
+                </span>
+              </div>
+              <p className="font-comic text-sm text-ink/80 leading-snug">
+                {lang === "pt"
+                  ? "Pequeno alienígena azul travesso, esperto e leal. Ajuda Aynara e Nicolas nas aventuras, comendo biscoitos e guiando o caminho!"
+                  : "Pequeño alienígena azul travieso, listo y leal. ¡Ayuda a Aynara y Nicolas en todas sus aventuras, comiendo galletas y guiando el camino!"}
               </p>
             </div>
           </div>
@@ -332,7 +360,7 @@ function Setup({
           lang={lang}
           title={t(lang, "today")}
           kicker={t(lang, "coverKicker")}
-          art="/art/scene-cover.png"
+          art="/art/scene-cover.jpg"
         />
         <form
           className="space-y-6 border-[3px] border-ink bg-sheet p-4 shadow-[6px_6px_0_#1b2a4a] sm:p-6"
