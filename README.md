@@ -16,9 +16,9 @@ No hace falta cuenta ni claves.
 
 ```bash
 npm install
-npm run dev
+npm run dev -- --port 43123
 ```
 
-Abre [http://localhost:3000](http://localhost:3000). Para leerlo juntos, una voz toma los globos de ella y la otra los de mamá o papá. Las flechas del teclado pasan la página. También se puede imprimir.
+Abre [http://localhost:43123](http://localhost:43123). Para leerlo juntos, una voz toma los globos de ella y la otra los de mamá o papá. Las flechas del teclado pasan la página. También se puede imprimir.
 
 Si la historia convence en viñetas, el botón «Ver en video» la pasa sola, con la voz del personaje y una música que baja mientras habla, para grabarla en pantalla grande.
