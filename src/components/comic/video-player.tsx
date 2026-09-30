@@ -13,6 +13,7 @@ import {
   type Lang,
   type Story,
 } from "@/lib/comic";
+import { asset } from "@/lib/asset";
 import { say, t } from "@/lib/i18n";
 import { scoreIsOn, scoreServerOff, setBed, setScore, subscribeScore } from "@/lib/score";
 import { STORIES } from "@/lib/stories";
@@ -259,7 +260,7 @@ function TitleSlide({
         <>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={coverArt}
+            src={asset(coverArt)}
             alt=""
             className="absolute inset-0 h-full w-full object-cover object-center"
           />

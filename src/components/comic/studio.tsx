@@ -38,6 +38,7 @@ import {
   type Lang,
   type SceneId,
 } from "@/lib/comic";
+import { asset } from "@/lib/asset";
 import { optionLabel, say, t } from "@/lib/i18n";
 import { scoreIsOn, scoreServerOff, setBed, setScore, subscribeScore } from "@/lib/score";
 import { STORIES, getStory } from "@/lib/stories";
@@ -273,7 +274,7 @@ function Setup({
             <div className="relative aspect-square w-full bg-[#f6ead4]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/art/avatar-nicolas.png"
+                src={asset("/art/avatar-nicolas.png")}
                 alt="Avatar Nicolas anime"
                 className="h-full w-full object-cover"
               />
@@ -301,7 +302,7 @@ function Setup({
             <div className="relative aspect-square w-full bg-[#f6ead4]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/art/avatar-aynara-stars.jpg"
+                src={asset("/art/avatar-aynara-stars.jpg")}
                 alt="Avatar Aynara 9 años anime"
                 className="h-full w-full object-cover"
               />
@@ -328,7 +329,7 @@ function Setup({
             <div className="relative aspect-square w-full bg-[#f6ead4]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/art/avatar-nilo.jpg"
+                src={asset("/art/avatar-nilo.jpg")}
                 alt="Avatar de Nilo, compañero original"
                 className="h-full w-full object-cover"
               />
@@ -354,7 +355,7 @@ function Setup({
         <figure className="mt-6 overflow-hidden border-[3px] border-ink bg-white shadow-[4px_4px_0_#1b2a4a]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/art/height-nilo.jpg"
+            src={asset("/art/height-nilo.jpg")}
             alt="Escala: la cabeza de Aynara llega al codo de Nicolas y Nilo es del tamaño de un gato"
             className="h-auto w-full"
           />
@@ -591,7 +592,7 @@ function Picker({
                 <>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={story.coverArt}
+                    src={asset(story.coverArt)}
                     alt=""
                     className="absolute inset-0 h-full w-full object-cover object-center"
                   />
@@ -894,7 +895,7 @@ function CoverCard({
         <>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={art}
+            src={asset(art)}
             alt=""
             className="absolute inset-0 h-full w-full object-cover object-center"
           />

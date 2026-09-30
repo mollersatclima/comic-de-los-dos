@@ -3,6 +3,7 @@
 import { Character } from "@/components/comic/character";
 import { Scene } from "@/components/comic/scenes";
 import type { Cast, ComicPanel, Lang } from "@/lib/comic";
+import { asset } from "@/lib/asset";
 import { say, t } from "@/lib/i18n";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
@@ -79,7 +80,7 @@ export function PanelView({
           <>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src={panel.art}
+              src={asset(panel.art)}
               alt=""
               className="absolute inset-0 h-full w-full object-cover object-center"
             />
