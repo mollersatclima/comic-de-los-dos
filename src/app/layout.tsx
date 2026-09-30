@@ -3,7 +3,7 @@ import { Comic_Neue, Lilita_One, Nunito } from "next/font/google";
 import "./globals.css";
 
 const nunito = Nunito({
-  subsets: ["latin"],
+  subsets: ["latin", "cyrillic"],
   variable: "--font-nunito",
   display: "swap",
 });

@@ -108,6 +108,116 @@ const PT: Record<string, string> = {
     "Se não chover, a gente faz na banheira. Cabemos os dois.",
 };
 
+const RU: Record<string, string> = {
+  "El espejo entre España y Brasil": "Зеркало между Испанией и Бразилией",
+  "Aynara vive en Brasil y Nicolas en España. Un espejo mágico abre el camino para verse.":
+    "Айнара живёт в Бразилии, а Николас — в Испании. Волшебное зеркало открывает дорогу, чтобы они увиделись.",
+  "Aynara vive en Brasil. Nicolas, en España.": "Айнара живёт в Бразилии. Николас — в Испании.",
+  "Papá, el espejo de mi cuarto está tibio.": "Папа, зеркало в моей комнате тёплое.",
+  "El mío también. Creo que se están buscando.": "Моё тоже. Кажется, они ищут друг друга.",
+  "¡brilla!": "сияет!",
+  "Si lo miramos a la vez, se abre.": "Если смотреть вместе, оно откроется.",
+  "Entonces miro. Y cruzo.": "Тогда я смотрю. И перехожу.",
+  "Nicolas dio un paso, y España se quedó atrás.": "Николас сделал шаг, и Испания осталась позади.",
+  "¡Te veo dentro del marco!": "Я вижу тебя в раме!",
+  "El camino es corto. Ya huelo tu cuarto.": "Дорога короткая. Я уже чувствую запах твоей комнаты.",
+  "Del otro lado estaba Brasil.": "По ту сторону была Бразилия.",
+  "¡Llegaste! ¡Nilo y yo estábamos esperándote con los brazos abiertos!":
+    "Ты пришёл! Мы с Нило ждали тебя с раскрытыми объятиями!",
+  "Un parpadeo, y ya estoy aquí con los dos.": "Одно мгновение — и я уже здесь, с вами двумя.",
+  "Nilo come galletas y no quiere que te vayas nunca.":
+    "Нило ест печенье и не хочет, чтобы ты уходил.",
+  "El espejo mágico siempre nos reunirá cuando lo miremos.":
+    "Волшебное зеркало всегда сведёт нас, когда мы на него посмотрим.",
+  "¡Abrazo gigante! Te quiero con todo mi corazón, papá.":
+    "Гигантские объятия! Я люблю тебя всем сердцем, папа.",
+  "Y yo a ti, Aynara. Brasil y España quedan a un solo paso.":
+    "И я тебя, Айнара. Бразилия и Испания — в одном шаге.",
+
+  "El mapa del limonero": "Карта лимонного дерева",
+  "Un mapa con crayón los lleva hasta un tesoro que cabe en una caja de galletas.":
+    "Карта, нарисованная мелком, ведёт к кладу, который помещается в коробку печенья.",
+  "Un sábado, detrás del limonero.": "В субботу, за лимонным деревом.",
+  "Mira, {{parent}}. Un mapa dibujado con crayón.": "Смотри, {{parent}}. Карта, нарисованная мелком.",
+  "Tiene manchas de limón. Alguien lo dejó para nosotros.": "На ней лимонные пятна. Кто-то оставил её для нас.",
+  "¡gotea!": "кап-кап!",
+  "La pista dice: donde el agua canta.": "Подсказка: там, где поёт вода.",
+  "Es la regadera roja. Siempre tararea.": "Это красная лейка. Она вечно напевает.",
+  "¡ja, ja!": "ха-ха!",
+  "Ahora toca caminar hacia atrás.": "Теперь надо идти задом наперёд.",
+  "Si nos caemos, el mapa no se entera.": "Если мы упадём, карта ничего не узнает.",
+  "¡Una caja de galletas!": "Коробка печенья!",
+  "Ábrela despacito. Los tesoros son tímidos.": "Открывай тихонько. Клады стеснительные.",
+  "Dentro había dos coronas y una nota.": "Внутри были две короны и записка.",
+  "«Para cuando reinemos sobre {{favorite}}».":
+    "«На тот день, когда мы станем королями. Наше королевство: {{favorite}}».",
+  "Entonces hoy mandamos nosotros. Cuidado con las hormigas.":
+    "Значит, сегодня правим мы. Осторожно, муравьи.",
+  "El limonero guardó el secreto.": "Лимонное дерево сохранило секрет.",
+  "Mañana escondemos otro mapa.": "Завтра спрячем другую карту.",
+  "Trato, {{child}}. Trato de {{role}}.": "Договорились, {{child}}. Слово {{role}}.",
+
+  "La nave de la manta": "Корабль из одеяла",
+  "Un día de lluvia, dos sillas y una linterna alcanzan para llegar a la cocina.":
+    "В дождливый день двух стульев и фонарика хватает, чтобы добраться до кухни.",
+  "Llovía tanto que el patio se volvió mar.": "Дождь был такой, что двор стал морем.",
+  "Hoy no podemos salir a buscar {{favorite}}.":
+    "Сегодня мы не можем выйти на поиски. Ищем вот это: {{favorite}}.",
+  "Podemos salir sin mojarnos. Hace falta una nave.": "Можно выйти и не промокнуть. Нужен корабль.",
+  "¡fum!": "пых!",
+  "La linterna será la luna.": "Фонарик будет луной.",
+  "La manta es el casco. Las sillas, los motores.": "Одеяло — это корпус. Стулья — двигатели.",
+  "Capitana {{child}} al habla. Rumbo a la cocina.": "Капитан {{child}} на связи. Курс на кухню.",
+  "{{parent}} al timón. Hay un calcetín en órbita.": "{{parent}} у штурвала. На орбите носок.",
+  "En la cocina, las galletas tenían órbita.": "На кухне печенье вышло на орбиту.",
+  "Pido permiso para aterrizar.": "Прошу разрешения на посадку.",
+  "Concedido. Una cada uno. El universo mira.": "Разрешаю. По одной каждому. Вселенная смотрит.",
+  "Última parada: los peluches.": "Последняя остановка: плюшевые игрушки.",
+  "Ahí viven los que cuidan {{favorite}}.": "Там живут хранители. Они берегут вот это: {{favorite}}.",
+  "La nave se quedó hecha cama.": "Корабль стал кроватью.",
+  "Buenas noches, {{role}}.": "Спокойной ночи, {{role}}.",
+  "Buenas noches, capitana. Mañana hay más cielo.": "Спокойной ночи, капитан. Завтра будет ещё больше неба.",
+
+  "El concierto de los calcetines": "Концерт носков",
+  "Hay una banda, un público de una sola persona y un bis que no se puede saltar.":
+    "Есть группа, публика из одного человека и бис, который нельзя пропустить.",
+  "Hoy hay concierto. Tú eres todo el público.": "Сегодня концерт. Ты — вся публика.",
+  "Tengo la mejor entrada: este cojín.": "У меня лучший билет: эта подушка.",
+  "¡tin, tin!": "динь-динь!",
+  "La banda se llama Los Calcetines Perdidos.": "Группа называется «Потерянные носки».",
+  "Falta uno. Por eso suenan misteriosos.": "Одного не хватает. Поэтому они звучат загадочно.",
+  "Esta canción habla de {{favorite}}.": "Эта песня про вот это: {{favorite}}.",
+  "El público pide otra. Y el público soy yo.": "Публика просит ещё. А публика — это я.",
+  "El bis lo tocaron juntos.": "Бис они сыграли вместе.",
+  "Yo hago la parte que suena a risa.": "Я играю ту часть, которая похожа на смех.",
+  "Yo hago el bombo con la olla grande.": "Я бью в барабан большой кастрюлей.",
+  "¡Gracias! Firmo calcetines a la salida.": "Спасибо! На выходе раздаю автографы на носках.",
+  "El público se levanta. Despacio: es el suelo.": "Публика встаёт. Осторожно: это пол.",
+  "La lámpara se apagó. El teatro volvió a ser cuarto.": "Лампа погасла. Театр снова стал комнатой.",
+  "¿Mañana repetimos la función?": "Завтра повторим спектакль?",
+  "Mañana. Guardo la entrada en el bolsillo.": "Завтра. Билет я спрячу в карман.",
+
+  "El charco océano": "Лужа-океан",
+  "Después de la lluvia, las botas se vuelven barcos y la calle un mar chiquito.":
+    "После дождя сапоги становятся кораблями, а улица — маленьким морем.",
+  "Después de la lluvia, la calle hizo un mar chiquito.": "После дождя улица устроила маленькое море.",
+  "Mis botas son un barco, {{role}}.": "Мои сапоги — корабль, {{role}}.",
+  "Las mías son un barco lento, de los que miran.": "Мои — медленный корабль, из тех, что смотрят.",
+  "¡splash!": "плюх!",
+  "¡Ese salto fue una ballena!": "Этот прыжок был китом!",
+  "Yo me quedo de faro, aquí en el borde.": "Я побуду маяком, здесь, на краю.",
+  "Ahí abajo hay otra yo.": "Там, внизу, другая я.",
+  "Y también estoy yo, saludando con las botas.": "И я тоже там, машу сапогами.",
+  "La hoja lleva un recado.": "Листок несёт записку.",
+  "Dice: hoy vimos {{favorite}} en el agua.": "Там написано: сегодня в воде было вот это: {{favorite}}.",
+  "El charco ya está más flaco. Se duerme.": "Лужа уже похудела. Она засыпает.",
+  "Los océanos también se cansan.": "Океаны тоже устают.",
+  "En la cocina, el mar se quedó en las botas.": "На кухне море осталось на сапогах.",
+  "Si mañana no llueve, ¿se acaba el mar?": "Если завтра не будет дождя, море кончится?",
+  "Si no llueve, lo hacemos en la bañera. Cabemos los dos.":
+    "Если не будет дождя, устроим его в ванне. Мы оба поместимся.",
+};
+
 const OPTION_PT: Record<string, string> = {
   castano: "Castanho",
   negro: "Preto",
@@ -121,6 +231,19 @@ const OPTION_PT: Record<string, string> = {
   cacao: "Cacau",
 };
 
+const OPTION_RU: Record<string, string> = {
+  castano: "Каштановый",
+  negro: "Чёрный",
+  rubio: "Русый",
+  rojo: "Рыжий",
+  canoso: "Седой",
+  porcelana: "Фарфор",
+  melocoton: "Персик",
+  canela: "Корица",
+  miel: "Мёд",
+  cacao: "Какао",
+};
+
 export const UI = {
   pt: {
     title: "O gibi dos dois",
@@ -131,6 +254,8 @@ export const UI = {
     language: "Idioma",
     portuguese: "Português do Brasil",
     spanish: "Español",
+    russian: "Русский",
+    stories: "Ver Histórias",
     draw: "Vamos desenhar vocês",
     drawBody:
       "Me conta quem são. Depois escolhem uma aventura e, se uma frase não soar bem, trocam. O gibi fica de vocês dois.",
@@ -216,6 +341,8 @@ export const UI = {
     language: "Idioma",
     portuguese: "Português do Brasil",
     spanish: "Español",
+    russian: "Русский",
+    stories: "Ver Aventuras",
     draw: "Vamos a dibujarlos",
     drawBody:
       "Cuéntame quiénes son. Después eligen una aventura y, si una frase no les suena, la cambian. El cómic queda de ustedes dos.",
@@ -292,6 +419,92 @@ export const UI = {
     panel: "Viñeta",
     speechLang: "es-MX",
   },
+  ru: {
+    title: "Комикс двоих",
+    tagline: "Мягкий рисунок, рядом Нило",
+    opening: "Открываем тетрадь…",
+    howTo: "Как читать",
+    reset: "Начать сначала",
+    language: "Язык",
+    portuguese: "Português do Brasil",
+    spanish: "Español",
+    russian: "Русский",
+    stories: "Истории",
+    draw: "Давайте нарисуем вас",
+    drawBody:
+      "Расскажи, кто вы. Потом выберите приключение и, если фраза звучит не так, поменяйте её. Комикс останется вашим.",
+    who: "Кто читает с тобой",
+    whoLabel: "Кто рассказывает историю",
+    imMom: "Я мама",
+    imDad: "Я папа",
+    yourName: "Твоё имя",
+    herName: "Имя твоей дочери",
+    herHair: "Её волосы",
+    hairOf: "Волосы",
+    herSkin: "Её кожа",
+    skinOf: "Кожа",
+    loves: "Что она любит",
+    pickAdventure: "Выбрать приключение",
+    needNames: "Нужны оба имени, чтобы открыть комикс.",
+    today: "Сегодняшние приключения",
+    coverKicker: "№ 0 · Обложка",
+    choose: "Выберите приключение",
+    theyAppear: "появляются в пяти. В каждом шесть кадров, чтобы читать вместе.",
+    changeNames: "Сменить имена",
+    readThis: "Читать этот комикс",
+    together: "чтобы читать вместе",
+    cover: "Обложка",
+    page: "Страница",
+    of: "из",
+    otherStories: "Другие приключения",
+    doneReading: "Готово, можно читать",
+    writeLines: "Написать фразы",
+    watchVideo: "Смотреть видео",
+    print: "Печатать",
+    theEnd: "КОНЕЦ",
+    previous: "Назад",
+    pages: "Страницы комикса",
+    readAgain: "Читать ещё раз",
+    another: "Другое приключение",
+    openComic: "Открыть комикс",
+    next: "Дальше",
+    voiceHint: "Один голос читает её пузыри. Другой — пузыри",
+    voiceHintEnd: "Если так нравится, «Смотреть видео» само перелистывает, чтобы записать.",
+    collects: "Для тех, кто собирает",
+    and: "и",
+    howTitle: "Как читать вместе",
+    howBody: "Комикс уже написан. Вы добавляете голос и, если хотите, мелок.",
+    how1: "Сядьте рядом, экран между вами.",
+    how2: "Один голос читает её пузыри. Другой — пузыри мамы или папы.",
+    how3: "Если фраза звучит не так, коснитесь её и поменяйте.",
+    how4: "На последней странице можно оставить её такой, какой хотите запомнить.",
+    gotIt: "Понятно",
+    resetTitle: "Начинаем с нуля?",
+    resetBody: "Сотрутся имена и фразы, которые вы меняли в этом браузере.",
+    betterNot: "Лучше нет",
+    yesDelete: "Да, стереть",
+    tapToEdit: "Коснитесь, чтобы изменить эту фразу",
+    saysOf: "Что говорит",
+    says: "говорит",
+    showControls: "Показать кнопки",
+    pause: "Пауза",
+    resume: "Дальше",
+    voiceOn: "Голос включён",
+    voiceOff: "Включить голос",
+    musicOn: "Музыка включена",
+    musicOff: "Включить музыку",
+    recordBig: "Снимать крупно",
+    backToComic: "Вернуться к комиксу",
+    videoOf: "Видео",
+    ifYouLike: "Музыка играет тихо, пока говорит персонаж. Голос и музыку можно выключить.",
+    endsLike: "Так заканчивается",
+    end: "Конец",
+    toWatch: "чтобы смотреть вместе",
+    adventuresOf: "Приключения",
+    ofNames: "про",
+    panel: "Кадр",
+    speechLang: "ru-RU",
+  },
 } as const;
 
 export type UiKey = keyof typeof UI.pt;
@@ -301,11 +514,13 @@ export function t(lang: Lang, key: UiKey) {
 }
 
 export function say(lang: Lang, template: string, cast: Cast) {
-  const text = lang === "pt" ? (PT[template] ?? template) : template;
+  const catalog = lang === "pt" ? PT : lang === "ru" ? RU : undefined;
+  const text = catalog?.[template] ?? template;
   return fill(text, cast, lang);
 }
 
 export function optionLabel(lang: Lang, id: string, label: string) {
-  if (lang === "es") return label;
-  return OPTION_PT[id] ?? label;
+  if (lang === "ru") return OPTION_RU[id] ?? label;
+  if (lang === "pt") return OPTION_PT[id] ?? label;
+  return label;
 }

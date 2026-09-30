@@ -93,7 +93,7 @@ export type Cast = {
 
 export type Step = "taller" | "aventura" | "lectura";
 
-export type Lang = "pt" | "es";
+export type Lang = "pt" | "es" | "ru";
 
 export type ComicState = {
   cast: Cast;
@@ -171,15 +171,28 @@ const FAVORITE_PT: Record<string, string> = {
   "los cuentos": "as histórias",
 };
 
+const FAVORITE_RU: Record<string, string> = {
+  Nilo: "Нило",
+  "las estrellas": "звёзды",
+  "las galletas": "печенье",
+  "los dinosaurios": "динозавры",
+  "el mar": "море",
+  "los gatos": "коты",
+  "los cuentos": "сказки",
+};
+
 export function favoritePhrase(phrase: string, lang: Lang) {
   if (lang === "es") return phrase;
+  if (lang === "ru") return FAVORITE_RU[phrase] ?? phrase;
   return FAVORITE_PT[phrase] ?? phrase;
 }
 
 export function displayChild(name: string, lang: Lang = "pt") {
   const trimmed = name.trim();
   if (trimmed.length > 0) return trimmed;
-  return lang === "pt" ? "sua filha" : "tu hija";
+  if (lang === "pt") return "sua filha";
+  if (lang === "ru") return "твоя дочь";
+  return "tu hija";
 }
 
 export function displayParent(name: string, role: Role, lang: Lang = "pt") {
@@ -190,8 +203,19 @@ export function displayParent(name: string, role: Role, lang: Lang = "pt") {
 
 export function roleWord(role: Role, capital = false, lang: Lang = "pt") {
   const word =
-    lang === "pt" ? (role === "mama" ? "mamãe" : "papai") : role === "mama" ? "mamá" : "papá";
-  return capital ? word.charAt(0).toUpperCase() + word.slice(1) : word;
+    lang === "pt"
+      ? role === "mama"
+        ? "mamãe"
+        : "papai"
+      : lang === "ru"
+        ? role === "mama"
+          ? "мама"
+          : "папа"
+        : role === "mama"
+          ? "mamá"
+          : "papá";
+  if (!capital) return word;
+  return word.charAt(0).toLocaleUpperCase(lang === "ru" ? "ru" : lang) + word.slice(1);
 }
 
 export function fill(text: string, cast: Cast, lang: Lang = "pt") {
@@ -221,7 +245,7 @@ function parseComic(raw: string): ComicState {
         favorite: parsed.cast.favorite === "Stitch" ? "Nilo" : parsed.cast.favorite,
       },
       edits: parsed.edits ?? {},
-      lang: parsed.lang === "es" ? "es" : "pt",
+      lang: parsed.lang === "es" || parsed.lang === "ru" ? parsed.lang : "pt",
       step: "aventura",
     };
   } catch {

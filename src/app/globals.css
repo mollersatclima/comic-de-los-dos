@@ -9,9 +9,9 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-nunito);
   --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-display-family);
-  --font-display: var(--font-display-family);
-  --font-comic: var(--font-comic-family);
+  --font-heading: var(--font-display-family), var(--font-nunito), sans-serif;
+  --font-display: var(--font-display-family), var(--font-nunito), sans-serif;
+  --font-comic: var(--font-comic-family), var(--font-nunito), sans-serif;
   --color-ink: #1b2a4a;
   --color-paper: #d4eefb;
   --color-sheet: #fff8ef;

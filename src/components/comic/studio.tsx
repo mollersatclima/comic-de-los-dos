@@ -50,10 +50,10 @@ export function Studio() {
   const [editingAll, setEditingAll] = useState(false);
   const [activeBubble, setActiveBubble] = useState<string | null>(null);
 
-  const lang = state.lang === "es" ? "es" : "pt";
+  const lang = state.lang;
 
   useEffect(() => {
-    document.documentElement.lang = lang === "pt" ? "pt-BR" : "es";
+    document.documentElement.lang = lang === "pt" ? "pt-BR" : lang === "ru" ? "ru" : "es";
     document.title = t(lang, "title");
   }, [lang]);
 
@@ -142,20 +142,21 @@ export function Studio() {
             className="h-10 bg-[#e63946] hover:bg-[#d62839] text-white font-display shadow-[2px_2px_0_#1b2a4a] text-sm"
             onClick={() => patch({ step: "aventura" })}
           >
-            📖 {lang === "pt" ? "Ver Histórias" : "Ver Aventuras"}
+            📖 {t(lang, "stories")}
           </Button>
           <div className="flex overflow-hidden border-[3px] border-ink" role="group" aria-label={t(lang, "language")}>
             {(
               [
-                ["pt", "PT"],
-                ["es", "ES"],
+                ["pt", "PT", "portuguese"],
+                ["es", "ES", "spanish"],
+                ["ru", "RU", "russian"],
               ] as const
-            ).map(([code, label]) => (
+            ).map(([code, label, name]) => (
               <button
                 key={code}
                 type="button"
                 aria-pressed={lang === code}
-                aria-label={code === "pt" ? t(lang, "portuguese") : t(lang, "spanish")}
+                aria-label={t(lang, name)}
                 onClick={() => patch({ lang: code })}
                 className={cn(
                   "h-10 px-3 font-display text-sm",
@@ -260,11 +261,19 @@ function Setup({
               Anime DBZ Character Cards
             </span>
             <h2 className="mt-1 font-display text-2xl sm:text-3xl">
-              {lang === "pt" ? "Personagens Oficiais do Mangá" : "Personajes Oficiales del Manga"}
+              {text(lang, {
+                pt: "Personagens Oficiais do Mangá",
+                es: "Personajes Oficiales del Manga",
+                ru: "Герои комикса",
+              })}
             </h2>
           </div>
           <p className="font-comic text-xs text-muted-foreground">
-            {lang === "pt" ? "Design original de Akira Toriyama (DBZ 90s)" : "Diseño fiel estilo Toriyama DBZ 90s"}
+            {text(lang, {
+              pt: "Design original de Akira Toriyama (DBZ 90s)",
+              es: "Diseño fiel estilo Toriyama DBZ 90s",
+              ru: "Рисунок в духе аниме девяностых",
+            })}
           </p>
         </div>
 
@@ -286,13 +295,15 @@ function Setup({
               <div className="flex items-center justify-between">
                 <h3 className="font-display text-xl">Nicolas Moller</h3>
                 <span className="rounded bg-[#2a9d8f]/20 px-2 py-0.5 font-comic text-xs font-bold text-[#2a9d8f]">
-                  Madrid · Viajero
+                  {text(lang, { pt: "Madrid · Viajero", es: "Madrid · Viajero", ru: "Мадрид · Путешественник" })}
                 </span>
               </div>
               <p className="font-comic text-sm text-ink/80 leading-snug">
-                {lang === "pt"
-                  ? "Cabelo escuro, óculos metálicos com ponte dupla, camisa clara e pulseira prateada. Capaz de cruzar dimensões para ver sua filha."
-                  : "Pelo castaño oscuro, gafas de doble puente, camiseta crema y pulsera de eslabones plateada. Capaz de atravesar dimensiones para ver a su hija."}
+                {text(lang, {
+                  pt: "Cabelo escuro, óculos metálicos com ponte dupla, camisa clara e pulseira prateada. Capaz de cruzar dimensões para ver sua filha.",
+                  es: "Pelo castaño oscuro, gafas de doble puente, camiseta crema y pulsera de eslabones plateada. Capaz de atravesar dimensiones para ver a su hija.",
+                  ru: "Тёмные волосы, очки с двойной перемычкой, светлая футболка и серебряный браслет. Может перейти через миры, чтобы увидеть дочь.",
+                })}
               </p>
             </div>
           </div>
@@ -307,20 +318,22 @@ function Setup({
                 className="h-full w-full object-cover"
               />
               <span className="absolute top-3 left-3 bg-[#f59e0b] px-2.5 py-1 font-display text-xs text-ink shadow-[2px_2px_0_#1b2a4a]">
-                #02 · AYNARA (9 ANOS)
+                #02 · AYNARA (9)
               </span>
             </div>
             <div className="p-4 space-y-2">
               <div className="flex items-center justify-between">
                 <h3 className="font-display text-xl">Aynara Moller</h3>
                 <span className="rounded bg-[#e76f51]/20 px-2 py-0.5 font-comic text-xs font-bold text-[#e76f51]">
-                  Rio · 9 anos
+                  {text(lang, { pt: "Rio · 9 anos", es: "Río · 9 años", ru: "Рио · 9 лет" })}
                 </span>
               </div>
               <p className="font-comic text-sm text-ink/80 leading-snug">
-                {lang === "pt"
-                  ? "9 anos. De pé, a cabeça dela chega só até o cotovelo do Nicolas. Rosto redondo, pernas curtas, camiseta coral."
-                  : "9 años. De pie, su cabeza llega solo hasta el codo de Nicolas. Cara redonda, piernas cortas, camiseta coral."}
+                {text(lang, {
+                  pt: "9 anos. De pé, a cabeça dela chega só até o cotovelo do Nicolas. Rosto redondo, pernas curtas, camiseta coral.",
+                  es: "9 años. De pie, su cabeza llega solo hasta el codo de Nicolas. Cara redonda, piernas cortas, camiseta coral.",
+                  ru: "9 лет. Стоя, её голова достаёт только до локтя Николаса. Круглое лицо, короткие ноги, коралловая футболка.",
+                })}
               </p>
             </div>
           </div>
@@ -341,13 +354,15 @@ function Setup({
               <div className="flex items-center justify-between">
                 <h3 className="font-display text-xl">Nilo</h3>
                 <span className="rounded bg-[#e8b086]/40 px-2 py-0.5 font-comic text-xs font-bold text-[#6b3a22]">
-                  Del limonero
+                  {text(lang, { pt: "Do limoeiro", es: "Del limonero", ru: "Из лимонного дерева" })}
                 </span>
               </div>
               <p className="font-comic text-sm text-ink/80 leading-snug">
-                {lang === "pt"
-                  ? "Companheiro original do tamanho de um gato. Pelagem de damasco, capuz castanho, estrela no peito e cauda anelada. A cabeça chega ao joelho da Aynara."
-                  : "Compañero original del tamaño de un gato. Pelo albaricoque, capucha castaña, estrella en el pecho y cola anillada. La cabeza le llega a la rodilla de Aynara."}
+                {text(lang, {
+                  pt: "Companheiro original do tamanho de um gato. Pelagem de damasco, capuz castanho, estrela no peito e cauda anelada. A cabeça chega ao joelho da Aynara.",
+                  es: "Compañero original del tamaño de un gato. Pelo albaricoque, capucha castaña, estrella en el pecho y cola anillada. La cabeza le llega a la rodilla de Aynara.",
+                  ru: "Свой герой ростом с кота. Шерсть абрикосовая, каштановый капюшон, звезда на груди и полосатый хвост. Голова достаёт Айнаре до колена.",
+                })}
               </p>
             </div>
           </div>
@@ -360,9 +375,11 @@ function Setup({
             className="h-auto w-full"
           />
           <figcaption className="px-4 py-3 font-comic text-sm text-ink/80">
-            {lang === "pt"
-              ? "Escala fixa: a cabeça da Aynara no cotovelo do Nicolas, e o Nilo do tamanho de um gato."
-              : "Escala fija: la cabeza de Aynara en el codo de Nicolas, y Nilo del tamaño de un gato."}
+            {text(lang, {
+              pt: "Escala fixa: a cabeça da Aynara no cotovelo do Nicolas, e o Nilo do tamanho de um gato.",
+              es: "Escala fija: la cabeza de Aynara en el codo de Nicolas, y Nilo del tamaño de un gato.",
+              ru: "Один рост во всех историях: голова Айнары у локтя Николаса, а Нило ростом с кота.",
+            })}
           </figcaption>
         </figure>
       </section>
@@ -657,7 +674,7 @@ function Reader({
   atEnd: boolean;
 }) {
   const story = getStory(state.storyId);
-  const lang = state.lang === "es" ? "es" : "pt";
+  const lang = state.lang;
   const page = state.pageIndex >= 0 ? story.pages[state.pageIndex] : null;
   const [video, setVideo] = useState(false);
   const music = useSyncExternalStore(subscribeScore, scoreIsOn, scoreServerOff);
@@ -947,6 +964,10 @@ function CastOnScene({ cast, apart = false }: { cast: Cast; apart?: boolean }) {
       </div>
     </>
   );
+}
+
+function text(lang: Lang, copy: Record<Lang, string>) {
+  return copy[lang];
 }
 
 function HowToRead({ lang }: { lang: Lang }) {
