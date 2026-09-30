@@ -398,7 +398,7 @@ export const STORIES: Story[] = [
           {
             id: "man-3a",
             scene: "bedroom",
-            art: "/art/scene-man-3a.jpg",
+            art: "/art/scene-man-3a.jpg?v=2",
             bubbles: [
               {
                 id: "man-3a-c",
