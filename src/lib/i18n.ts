@@ -14,11 +14,11 @@ const PT: Record<string, string> = {
   "¡Te veo dentro del marco!": "Estou te vendo dentro da moldura!",
   "El camino es corto. Ya huelo tu cuarto.": "O caminho é curtinho. Já sinto o cheiro do seu quarto.",
   "Del otro lado estaba Brasil.": "Do outro lado estava o Brasil.",
-  "¡Llegaste! ¡Stitch y yo estábamos esperándote con los brazos abiertos!":
-    "Você chegou! O Stitch e eu estávamos te esperando de braços abertos!",
+  "¡Llegaste! ¡Nilo y yo estábamos esperándote con los brazos abiertos!":
+    "Você chegou! O Nilo e eu estávamos te esperando de braços abertos!",
   "Un parpadeo, y ya estoy aquí con los dos.": "Um piscar de olhos, e eu já estou aqui com vocês dois.",
-  "Stitch come galletas y no quiere que te vayas nunca.":
-    "O Stitch come biscoitos e não quer que você vá embora nunca.",
+  "Nilo come galletas y no quiere que te vayas nunca.":
+    "O Nilo come biscoitos e não quer que você vá embora nunca.",
   "El espejo mágico siempre nos reunirá cuando lo miremos.":
     "O espelho mágico sempre vai nos reunir toda vez que a gente olhar.",
   "¡Abrazo gigante! Te quiero con todo mi corazón, papá.":
@@ -124,7 +124,7 @@ const OPTION_PT: Record<string, string> = {
 export const UI = {
   pt: {
     title: "O gibi dos dois",
-    tagline: "Desenhado macio, no estilo do Stitch",
+    tagline: "Desenhado macio, com o Nilo ao lado",
     opening: "Abrindo o caderno…",
     howTo: "Como ler",
     reset: "Começar de novo",
@@ -209,7 +209,7 @@ export const UI = {
   },
   es: {
     title: "Cómic de los dos",
-    tagline: "Dibujada suavecito, al estilo de Stitch",
+    tagline: "Dibujado suavecito, con Nilo al lado",
     opening: "Abriendo el cuaderno…",
     howTo: "Cómo leerlo",
     reset: "Empezar de cero",

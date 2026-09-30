@@ -375,23 +375,24 @@ function Animal({ x, y, kind }: { x: number; y: number; kind: "bear" | "bunny" |
   );
 }
 
-function StitchPlush({ x, y, scale = 1 }: { x: number; y: number; scale?: number }) {
+function NiloPlush({ x, y, scale = 1 }: { x: number; y: number; scale?: number }) {
   return (
     <g transform={`translate(${x} ${y}) scale(${scale})`}>
-      <ellipse cx="-20" cy="-6" rx="11" ry="18" fill="#2d6adf" stroke="none" strokeWidth="3" transform="rotate(-16 -20 -6)" />
-      <ellipse cx="20" cy="-6" rx="11" ry="18" fill="#2d6adf" stroke="none" strokeWidth="3" transform="rotate(16 20 -6)" />
-      <ellipse cx="-20" cy="-6" rx="5" ry="10" fill="#f7b7c8" transform="rotate(-16 -20 -6)" />
-      <ellipse cx="20" cy="-6" rx="5" ry="10" fill="#f7b7c8" transform="rotate(16 20 -6)" />
-      <path d="M-3 -18 Q0 -32 3 -18" fill="none" stroke="#1b2a4a" strokeWidth="2.4" strokeLinecap="round" />
-      <circle cx="3" cy="-32" r="3.4" fill="#2d6adf" stroke="none" strokeWidth="2" />
-      <ellipse cx="0" cy="4" rx="18" ry="17" fill="#3d86f6" stroke="none" strokeWidth="3" />
-      <ellipse cx="0" cy="10" rx="9" ry="8" fill="#d9eeff" />
-      <ellipse cx="-7" cy="1" rx="4.6" ry="5.6" fill="#142033" />
-      <ellipse cx="7" cy="1" rx="4.6" ry="5.6" fill="#142033" />
-      <circle cx="-5.4" cy="-0.8" r="1.6" fill="#fff" />
-      <circle cx="8.6" cy="-0.8" r="1.6" fill="#fff" />
-      <ellipse cx="0" cy="8" rx="3.6" ry="2.5" fill="#1b2a4a" />
-      <path d="M-5 12 Q0 16 5 12" fill="none" stroke="#1b2a4a" strokeWidth="1.8" strokeLinecap="round" />
+      <ellipse cx="-11" cy="-16" rx="7" ry="6" fill="#8d5a3a" />
+      <ellipse cx="11" cy="-16" rx="7" ry="6" fill="#8d5a3a" />
+      <ellipse cx="-11" cy="-16" rx="3.5" ry="3" fill="#f6ead4" />
+      <ellipse cx="11" cy="-16" rx="3.5" ry="3" fill="#f6ead4" />
+      <ellipse cx="0" cy="2" rx="16" ry="15" fill="#e8b086" />
+      <path d="M-14 -6 Q0 -18 14 -6 Q8 2 0 1 Q-8 2 -14 -6" fill="#8d5a3a" />
+      <ellipse cx="0" cy="8" rx="8" ry="7" fill="#fff6ea" />
+      <path d="M-2 4 L0 7 L2 4 L0 5 Z" fill="#e6b325" />
+      <ellipse cx="-6" cy="-1" rx="3.2" ry="3.6" fill="#f4e1c4" />
+      <ellipse cx="6" cy="-1" rx="3.2" ry="3.6" fill="#f4e1c4" />
+      <circle cx="-6" cy="-1" r="1.7" fill="#c47b1a" />
+      <circle cx="6" cy="-1" r="1.7" fill="#c47b1a" />
+      <circle cx="0" cy="4" r="1.6" fill="#6b3a22" />
+      <path d="M18 8 Q34 2 40 14 Q30 16 22 14" fill="#e8b086" />
+      <path d="M28 6 Q36 8 38 14" fill="none" stroke="#8d5a3a" strokeWidth="3" strokeLinecap="round" />
     </g>
   );
 }
@@ -418,7 +419,7 @@ function Bedroom({ variant }: { variant: "day" | "sleep" | "band" | "concert" | 
       {(variant === "band" || variant === "bow" || variant === "day") && (
         <>
           <Animal x={120} y={176} kind="bear" />
-          <StitchPlush x={168} y={170} />
+          <NiloPlush x={168} y={170} />
           <Animal x={214} y={168} kind="star" />
         </>
       )}
@@ -556,7 +557,7 @@ function BrazilSide() {
           strokeWidth="2"
         />
       ))}
-      <StitchPlush x={520} y={128} scale={1.2} />
+      <NiloPlush x={520} y={128} scale={1.2} />
     </g>
   );
 }
@@ -638,7 +639,7 @@ function BrazilRoom() {
           strokeWidth="2"
         />
       ))}
-      <StitchPlush x={530} y={158} scale={1.7} />
+      <NiloPlush x={530} y={158} scale={1.7} />
       <MirrorFrame glow />
     </Frame>
   );

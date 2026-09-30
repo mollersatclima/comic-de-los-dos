@@ -29,7 +29,7 @@ export const STORIES: Story[] = [
     blurb:
       "Aynara vive en Brasil y Nicolas en España. Un espejo mágico abre el camino para verse.",
     cover: "mirror-glow",
-    coverArt: "/art/scene-cover.jpg",
+    coverArt: "/art/scene-cover.jpg?v=nilo",
     pages: [
       {
         id: "esp-1",
@@ -56,7 +56,7 @@ export const STORIES: Story[] = [
           {
             id: "esp-1b",
             scene: "mirror-glow",
-            art: "/art/scene-1b.jpg",
+            art: "/art/scene-1b.jpg?v=nilo",
             sfx: "¡brilla!",
             bubbles: [
               {
@@ -80,7 +80,7 @@ export const STORIES: Story[] = [
           {
             id: "esp-2a",
             scene: "mirror-cross",
-            art: "/art/scene-2a.jpg",
+            art: "/art/scene-2a.jpg?v=nilo",
             caption: "Nicolas dio un paso, y España se quedó atrás.",
             bubbles: [
               {
@@ -99,13 +99,13 @@ export const STORIES: Story[] = [
           {
             id: "esp-2b",
             scene: "mirror-brazil",
-            art: "/art/scene-2b.jpg",
+            art: "/art/scene-2b.jpg?v=nilo",
             caption: "Del otro lado estaba Brasil.",
             bubbles: [
               {
                 id: "esp-2b-c",
                 speaker: "child",
-                text: "¡Llegaste! ¡Stitch y yo estábamos esperándote con los brazos abiertos!",
+                text: "¡Llegaste! ¡Nilo y yo estábamos esperándote con los brazos abiertos!",
               },
               {
                 id: "esp-2b-p",
@@ -123,12 +123,12 @@ export const STORIES: Story[] = [
           {
             id: "esp-3a",
             scene: "mirror-brazil",
-            art: "/art/scene-3a.jpg",
+            art: "/art/scene-3a.jpg?v=nilo",
             bubbles: [
               {
                 id: "esp-3a-c",
                 speaker: "child",
-                text: "Stitch come galletas y no quiere que te vayas nunca.",
+                text: "Nilo come galletas y no quiere que te vayas nunca.",
               },
               {
                 id: "esp-3a-p",
@@ -141,7 +141,7 @@ export const STORIES: Story[] = [
           {
             id: "esp-3b",
             scene: "mirror-bye",
-            art: "/art/scene-3b.jpg",
+            art: "/art/scene-3b.jpg?v=nilo",
             caption: "El marco guardó el camino entre los dos países.",
             bubbles: [
               {
@@ -167,7 +167,7 @@ export const STORIES: Story[] = [
     blurb:
       "Un mapa con crayón los lleva hasta un tesoro que cabe en una caja de galletas.",
     cover: "garden",
-    coverArt: "/art/scene-lim-cover.jpg",
+    coverArt: "/art/scene-lim-cover.jpg?v=nilo",
     pages: [
       {
         id: "lim-1",
@@ -175,7 +175,7 @@ export const STORIES: Story[] = [
           {
             id: "lim-1a",
             scene: "garden",
-            art: "/art/scene-lim-1a.jpg",
+            art: "/art/scene-lim-1a.jpg?v=nilo",
             caption: "Un sábado, detrás del limonero.",
             bubbles: [
               {
@@ -194,7 +194,7 @@ export const STORIES: Story[] = [
           {
             id: "lim-1b",
             scene: "garden-can",
-            art: "/art/scene-lim-1b.jpg",
+            art: "/art/scene-lim-1b.jpg?v=nilo",
             sfx: "¡gotea!",
             bubbles: [
               {
@@ -218,7 +218,7 @@ export const STORIES: Story[] = [
           {
             id: "lim-2a",
             scene: "garden-path",
-            art: "/art/scene-lim-2a.jpg",
+            art: "/art/scene-lim-2a.jpg?v=nilo",
             sfx: "¡ja, ja!",
             bubbles: [
               {
@@ -237,7 +237,7 @@ export const STORIES: Story[] = [
           {
             id: "lim-2b",
             scene: "garden-box",
-            art: "/art/scene-lim-2b.jpg",
+            art: "/art/scene-lim-2b.jpg?v=nilo",
             bubbles: [
               {
                 id: "lim-2b-c",
@@ -260,7 +260,7 @@ export const STORIES: Story[] = [
           {
             id: "lim-3a",
             scene: "garden-crowns",
-            art: "/art/scene-lim-3a.jpg",
+            art: "/art/scene-lim-3a.jpg?v=nilo",
             caption: "Dentro había dos coronas y una nota.",
             bubbles: [
               {
@@ -279,7 +279,7 @@ export const STORIES: Story[] = [
           {
             id: "lim-3b",
             scene: "garden-hug",
-            art: "/art/scene-lim-3b.jpg",
+            art: "/art/scene-lim-3b.jpg?v=nilo",
             caption: "El limonero guardó el secreto.",
             bubbles: [
               {
@@ -305,7 +305,7 @@ export const STORIES: Story[] = [
     blurb:
       "Un día de lluvia, dos sillas y una linterna alcanzan para llegar a la cocina.",
     cover: "fort",
-    coverArt: "/art/scene-man-cover.jpg",
+    coverArt: "/art/scene-man-cover.jpg?v=nilo",
     pages: [
       {
         id: "man-1",
@@ -313,7 +313,7 @@ export const STORIES: Story[] = [
           {
             id: "man-1a",
             scene: "rain-room",
-            art: "/art/scene-man-1a.jpg",
+            art: "/art/scene-man-1a.jpg?v=nilo",
             caption: "Llovía tanto que el patio se volvió mar.",
             bubbles: [
               {
@@ -332,7 +332,7 @@ export const STORIES: Story[] = [
           {
             id: "man-1b",
             scene: "fort",
-            art: "/art/scene-man-1b.jpg",
+            art: "/art/scene-man-1b.jpg?v=nilo",
             sfx: "¡fum!",
             bubbles: [
               {
@@ -356,7 +356,7 @@ export const STORIES: Story[] = [
           {
             id: "man-2a",
             scene: "fort-inside",
-            art: "/art/scene-man-2a.jpg",
+            art: "/art/scene-man-2a.jpg?v=nilo",
             bubbles: [
               {
                 id: "man-2a-c",
@@ -374,7 +374,7 @@ export const STORIES: Story[] = [
           {
             id: "man-2b",
             scene: "kitchen",
-            art: "/art/scene-man-2b.jpg",
+            art: "/art/scene-man-2b.jpg?v=nilo",
             caption: "En la cocina, las galletas tenían órbita.",
             bubbles: [
               {
@@ -398,7 +398,7 @@ export const STORIES: Story[] = [
           {
             id: "man-3a",
             scene: "bedroom",
-            art: "/art/scene-man-3a.jpg?v=2",
+            art: "/art/scene-man-3a.jpg?v=nilo",
             bubbles: [
               {
                 id: "man-3a-c",
@@ -416,7 +416,7 @@ export const STORIES: Story[] = [
           {
             id: "man-3b",
             scene: "bedroom-sleep",
-            art: "/art/scene-man-3b.jpg",
+            art: "/art/scene-man-3b.jpg?v=nilo",
             caption: "La nave se quedó hecha cama.",
             bubbles: [
               {
@@ -442,7 +442,7 @@ export const STORIES: Story[] = [
     blurb:
       "Hay una banda, un público de una sola persona y un bis que no se puede saltar.",
     cover: "concert",
-    coverArt: "/art/scene-con-cover.jpg",
+    coverArt: "/art/scene-con-cover.jpg?v=nilo",
     pages: [
       {
         id: "con-1",
@@ -450,7 +450,7 @@ export const STORIES: Story[] = [
           {
             id: "con-1a",
             scene: "band",
-            art: "/art/scene-con-1a.jpg",
+            art: "/art/scene-con-1a.jpg?v=nilo",
             bubbles: [
               {
                 id: "con-1a-c",
@@ -468,7 +468,7 @@ export const STORIES: Story[] = [
           {
             id: "con-1b",
             scene: "concert",
-            art: "/art/scene-con-1b.jpg",
+            art: "/art/scene-con-1b.jpg?v=nilo",
             sfx: "¡tin, tin!",
             bubbles: [
               {
@@ -492,7 +492,7 @@ export const STORIES: Story[] = [
           {
             id: "con-2a",
             scene: "concert",
-            art: "/art/scene-con-2a.jpg",
+            art: "/art/scene-con-2a.jpg?v=nilo",
             bubbles: [
               {
                 id: "con-2a-c",
@@ -510,7 +510,7 @@ export const STORIES: Story[] = [
           {
             id: "con-2b",
             scene: "encore",
-            art: "/art/scene-con-2b.jpg",
+            art: "/art/scene-con-2b.jpg?v=nilo",
             caption: "El bis lo tocaron juntos.",
             bubbles: [
               {
@@ -534,7 +534,7 @@ export const STORIES: Story[] = [
           {
             id: "con-3a",
             scene: "bow",
-            art: "/art/scene-con-3a.jpg",
+            art: "/art/scene-con-3a.jpg?v=nilo",
             bubbles: [
               {
                 id: "con-3a-c",
@@ -552,7 +552,7 @@ export const STORIES: Story[] = [
           {
             id: "con-3b",
             scene: "lights-down",
-            art: "/art/scene-con-3b.jpg",
+            art: "/art/scene-con-3b.jpg?v=nilo",
             caption: "La lámpara se apagó. El teatro volvió a ser cuarto.",
             bubbles: [
               {
@@ -578,7 +578,7 @@ export const STORIES: Story[] = [
     blurb:
       "Después de la lluvia, las botas se vuelven barcos y la calle un mar chiquito.",
     cover: "puddle",
-    coverArt: "/art/scene-cha-cover.jpg",
+    coverArt: "/art/scene-cha-cover.jpg?v=nilo",
     pages: [
       {
         id: "cha-1",
@@ -586,7 +586,7 @@ export const STORIES: Story[] = [
           {
             id: "cha-1a",
             scene: "doorway",
-            art: "/art/scene-cha-1a.jpg",
+            art: "/art/scene-cha-1a.jpg?v=nilo",
             caption: "Después de la lluvia, la calle hizo un mar chiquito.",
             bubbles: [
               {
@@ -605,7 +605,7 @@ export const STORIES: Story[] = [
           {
             id: "cha-1b",
             scene: "puddle",
-            art: "/art/scene-cha-1b.jpg",
+            art: "/art/scene-cha-1b.jpg?v=nilo",
             sfx: "¡splash!",
             bubbles: [
               {
@@ -629,7 +629,7 @@ export const STORIES: Story[] = [
           {
             id: "cha-2a",
             scene: "puddle-look",
-            art: "/art/scene-cha-2a.jpg",
+            art: "/art/scene-cha-2a.jpg?v=nilo",
             bubbles: [
               {
                 id: "cha-2a-c",
@@ -647,7 +647,7 @@ export const STORIES: Story[] = [
           {
             id: "cha-2b",
             scene: "puddle-leaf",
-            art: "/art/scene-cha-2b.jpg",
+            art: "/art/scene-cha-2b.jpg?v=nilo",
             bubbles: [
               {
                 id: "cha-2b-c",
@@ -670,7 +670,7 @@ export const STORIES: Story[] = [
           {
             id: "cha-3a",
             scene: "walk-home",
-            art: "/art/scene-cha-3a.jpg",
+            art: "/art/scene-cha-3a.jpg?v=nilo",
             bubbles: [
               {
                 id: "cha-3a-c",
@@ -688,7 +688,7 @@ export const STORIES: Story[] = [
           {
             id: "cha-3b",
             scene: "towels",
-            art: "/art/scene-cha-3b.jpg",
+            art: "/art/scene-cha-3b.jpg?v=nilo",
             caption: "En la cocina, el mar se quedó en las botas.",
             bubbles: [
               {

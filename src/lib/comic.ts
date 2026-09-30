@@ -121,7 +121,7 @@ export const SKIN = [
 ] as const;
 
 export const FAVORITES = [
-  { id: "stitch", phrase: "Stitch" },
+  { id: "nilo", phrase: "Nilo" },
   { id: "estrellas", phrase: "las estrellas" },
   { id: "galletas", phrase: "las galletas" },
   { id: "dinosaurios", phrase: "los dinosaurios" },
@@ -162,7 +162,7 @@ let cachedRaw: string | undefined;
 let cachedState: ComicState = SERVER_SNAPSHOT;
 
 const FAVORITE_PT: Record<string, string> = {
-  Stitch: "Stitch",
+  Nilo: "Nilo",
   "las estrellas": "as estrelas",
   "las galletas": "os biscoitos",
   "los dinosaurios": "os dinossauros",
@@ -215,7 +215,11 @@ function parseComic(raw: string): ComicState {
     return {
       ...defaultState(),
       ...parsed,
-      cast: { ...defaultCast(), ...parsed.cast },
+      cast: {
+        ...defaultCast(),
+        ...parsed.cast,
+        favorite: parsed.cast.favorite === "Stitch" ? "Nilo" : parsed.cast.favorite,
+      },
       edits: parsed.edits ?? {},
       lang: parsed.lang === "es" ? "es" : "pt",
     };

@@ -301,7 +301,7 @@ function Setup({
             <div className="relative aspect-square w-full bg-[#f6ead4]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/art/avatar-aynara-9yo.jpg"
+                src="/art/avatar-aynara-stars.jpg"
                 alt="Avatar Aynara 9 años anime"
                 className="h-full w-full object-cover"
               />
@@ -324,30 +324,29 @@ function Setup({
             </div>
           </div>
 
-          {/* Stitch companion card */}
           <div className="overflow-hidden border-[3px] border-ink bg-white shadow-[4px_4px_0_#1b2a4a]">
             <div className="relative aspect-square w-full bg-[#f6ead4]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/art/avatar-stitch.jpg"
-                alt="Avatar Stitch companheiro anime"
+                src="/art/avatar-nilo.jpg"
+                alt="Avatar de Nilo, compañero original"
                 className="h-full w-full object-cover"
               />
-              <span className="absolute top-3 left-3 bg-[#1d3557] px-2.5 py-1 font-display text-xs text-white shadow-[2px_2px_0_#1b2a4a]">
-                #03 · STITCH (COMPAÑERO)
+              <span className="absolute top-3 left-3 bg-[#8d5a3a] px-2.5 py-1 font-display text-xs text-white shadow-[2px_2px_0_#1b2a4a]">
+                #03 · NILO
               </span>
             </div>
             <div className="p-4 space-y-2">
               <div className="flex items-center justify-between">
-                <h3 className="font-display text-xl">Stitch</h3>
-                <span className="rounded bg-[#457b9d]/20 px-2 py-0.5 font-comic text-xs font-bold text-[#1d3557]">
-                  Fiel Companheiro
+                <h3 className="font-display text-xl">Nilo</h3>
+                <span className="rounded bg-[#e8b086]/40 px-2 py-0.5 font-comic text-xs font-bold text-[#6b3a22]">
+                  Del limonero
                 </span>
               </div>
               <p className="font-comic text-sm text-ink/80 leading-snug">
                 {lang === "pt"
-                  ? "Do tamanho de um gato: de pé, a cabeça dele chega só ao joelho da Aynara. Companheiro azul, pequeno e leal."
-                  : "Del tamaño de un gato: de pie, su cabeza llega solo a la rodilla de Aynara. Compañero azul, pequeño y leal."}
+                  ? "Companheiro original do tamanho de um gato. Pelagem de damasco, capuz castanho, estrela no peito e cauda anelada. A cabeça chega ao joelho da Aynara."
+                  : "Compañero original del tamaño de un gato. Pelo albaricoque, capucha castaña, estrella en el pecho y cola anillada. La cabeza le llega a la rodilla de Aynara."}
               </p>
             </div>
           </div>
@@ -355,14 +354,14 @@ function Setup({
         <figure className="mt-6 overflow-hidden border-[3px] border-ink bg-white shadow-[4px_4px_0_#1b2a4a]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/art/height-codo.jpg"
-            alt="Escala: la cabeza de Aynara llega al codo de Nicolas y Stitch es del tamaño de un gato"
+            src="/art/height-nilo.jpg"
+            alt="Escala: la cabeza de Aynara llega al codo de Nicolas y Nilo es del tamaño de un gato"
             className="h-auto w-full"
           />
           <figcaption className="px-4 py-3 font-comic text-sm text-ink/80">
             {lang === "pt"
-              ? "Escala fixa em todas as histórias: a cabeça da Aynara no cotovelo do Nicolas, e o Stitch do tamanho de um gato."
-              : "Escala fija en todas las historias: la cabeza de Aynara en el codo de Nicolas, y Stitch del tamaño de un gato."}
+              ? "Escala fixa: a cabeça da Aynara no cotovelo do Nicolas, e o Nilo do tamanho de um gato."
+              : "Escala fija: la cabeza de Aynara en el codo de Nicolas, y Nilo del tamaño de un gato."}
           </figcaption>
         </figure>
       </section>
