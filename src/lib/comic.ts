@@ -150,7 +150,7 @@ export function defaultState(): ComicState {
   return {
     cast: defaultCast(),
     storyId: "espejo",
-    step: "lectura",
+    step: "aventura",
     pageIndex: -1,
     edits: {},
     lang: "pt",
@@ -222,6 +222,7 @@ function parseComic(raw: string): ComicState {
       },
       edits: parsed.edits ?? {},
       lang: parsed.lang === "es" ? "es" : "pt",
+      step: "aventura",
     };
   } catch {
     return defaultState();
