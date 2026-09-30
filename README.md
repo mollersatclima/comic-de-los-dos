@@ -12,6 +12,8 @@ Las historias son:
 
 No hace falta cuenta ni claves.
 
+El enlace permanente, para abrirlo en el celular, es [https://mollersatclima.github.io/comic-de-los-dos/](https://mollersatclima.github.io/comic-de-los-dos/).
+
 ## Cómo abrirlo
 
 ```bash
