@@ -175,7 +175,7 @@ export const STORIES: Story[] = [
           {
             id: "lim-1a",
             scene: "garden",
-            art: "/art/scene-lim-1a.png",
+            art: "/art/scene-lim-1a.jpg",
             caption: "Un sábado, detrás del limonero.",
             bubbles: [
               {
@@ -194,7 +194,7 @@ export const STORIES: Story[] = [
           {
             id: "lim-1b",
             scene: "garden-can",
-            art: "/art/scene-lim-1b.png",
+            art: "/art/scene-lim-1b.jpg",
             sfx: "¡gotea!",
             bubbles: [
               {
@@ -218,7 +218,7 @@ export const STORIES: Story[] = [
           {
             id: "lim-2a",
             scene: "garden-path",
-            art: "/art/scene-lim-2a.png",
+            art: "/art/scene-lim-2a.jpg",
             sfx: "¡ja, ja!",
             bubbles: [
               {
@@ -237,7 +237,7 @@ export const STORIES: Story[] = [
           {
             id: "lim-2b",
             scene: "garden-box",
-            art: "/art/scene-lim-2b.png",
+            art: "/art/scene-lim-2b.jpg",
             bubbles: [
               {
                 id: "lim-2b-c",
@@ -260,7 +260,7 @@ export const STORIES: Story[] = [
           {
             id: "lim-3a",
             scene: "garden-crowns",
-            art: "/art/scene-lim-3a.png",
+            art: "/art/scene-lim-3a.jpg",
             caption: "Dentro había dos coronas y una nota.",
             bubbles: [
               {
@@ -279,7 +279,7 @@ export const STORIES: Story[] = [
           {
             id: "lim-3b",
             scene: "garden-hug",
-            art: "/art/scene-lim-3b.png",
+            art: "/art/scene-lim-3b.jpg",
             caption: "El limonero guardó el secreto.",
             bubbles: [
               {
@@ -313,7 +313,7 @@ export const STORIES: Story[] = [
           {
             id: "man-1a",
             scene: "rain-room",
-            art: "/art/scene-man-1a.png",
+            art: "/art/scene-man-1a.jpg",
             caption: "Llovía tanto que el patio se volvió mar.",
             bubbles: [
               {
@@ -332,7 +332,7 @@ export const STORIES: Story[] = [
           {
             id: "man-1b",
             scene: "fort",
-            art: "/art/scene-man-1b.png",
+            art: "/art/scene-man-1b.jpg",
             sfx: "¡fum!",
             bubbles: [
               {
@@ -356,7 +356,7 @@ export const STORIES: Story[] = [
           {
             id: "man-2a",
             scene: "fort-inside",
-            art: "/art/scene-man-2a.png",
+            art: "/art/scene-man-2a.jpg",
             bubbles: [
               {
                 id: "man-2a-c",
@@ -374,7 +374,7 @@ export const STORIES: Story[] = [
           {
             id: "man-2b",
             scene: "kitchen",
-            art: "/art/scene-man-2b.png",
+            art: "/art/scene-man-2b.jpg",
             caption: "En la cocina, las galletas tenían órbita.",
             bubbles: [
               {
@@ -398,7 +398,7 @@ export const STORIES: Story[] = [
           {
             id: "man-3a",
             scene: "bedroom",
-            art: "/art/scene-man-3a.png",
+            art: "/art/scene-man-3a.jpg",
             bubbles: [
               {
                 id: "man-3a-c",
@@ -416,7 +416,7 @@ export const STORIES: Story[] = [
           {
             id: "man-3b",
             scene: "bedroom-sleep",
-            art: "/art/scene-man-3b.png",
+            art: "/art/scene-man-3b.jpg",
             caption: "La nave se quedó hecha cama.",
             bubbles: [
               {
@@ -450,7 +450,7 @@ export const STORIES: Story[] = [
           {
             id: "con-1a",
             scene: "band",
-            art: "/art/scene-con-1a.png",
+            art: "/art/scene-con-1a.jpg",
             bubbles: [
               {
                 id: "con-1a-c",
@@ -468,7 +468,7 @@ export const STORIES: Story[] = [
           {
             id: "con-1b",
             scene: "concert",
-            art: "/art/scene-con-1b.png",
+            art: "/art/scene-con-1b.jpg",
             sfx: "¡tin, tin!",
             bubbles: [
               {
@@ -492,7 +492,7 @@ export const STORIES: Story[] = [
           {
             id: "con-2a",
             scene: "concert",
-            art: "/art/scene-con-2a.png",
+            art: "/art/scene-con-2a.jpg",
             bubbles: [
               {
                 id: "con-2a-c",
@@ -510,7 +510,7 @@ export const STORIES: Story[] = [
           {
             id: "con-2b",
             scene: "encore",
-            art: "/art/scene-con-2b.png",
+            art: "/art/scene-con-2b.jpg",
             caption: "El bis lo tocaron juntos.",
             bubbles: [
               {
@@ -534,7 +534,7 @@ export const STORIES: Story[] = [
           {
             id: "con-3a",
             scene: "bow",
-            art: "/art/scene-con-3a.png",
+            art: "/art/scene-con-3a.jpg",
             bubbles: [
               {
                 id: "con-3a-c",
@@ -552,7 +552,7 @@ export const STORIES: Story[] = [
           {
             id: "con-3b",
             scene: "lights-down",
-            art: "/art/scene-con-3b.png",
+            art: "/art/scene-con-3b.jpg",
             caption: "La lámpara se apagó. El teatro volvió a ser cuarto.",
             bubbles: [
               {
@@ -586,7 +586,7 @@ export const STORIES: Story[] = [
           {
             id: "cha-1a",
             scene: "doorway",
-            art: "/art/scene-cha-1a.png",
+            art: "/art/scene-cha-1a.jpg",
             caption: "Después de la lluvia, la calle hizo un mar chiquito.",
             bubbles: [
               {
@@ -605,7 +605,7 @@ export const STORIES: Story[] = [
           {
             id: "cha-1b",
             scene: "puddle",
-            art: "/art/scene-cha-1b.png",
+            art: "/art/scene-cha-1b.jpg",
             sfx: "¡splash!",
             bubbles: [
               {
@@ -629,7 +629,7 @@ export const STORIES: Story[] = [
           {
             id: "cha-2a",
             scene: "puddle-look",
-            art: "/art/scene-cha-2a.png",
+            art: "/art/scene-cha-2a.jpg",
             bubbles: [
               {
                 id: "cha-2a-c",
@@ -647,7 +647,7 @@ export const STORIES: Story[] = [
           {
             id: "cha-2b",
             scene: "puddle-leaf",
-            art: "/art/scene-cha-2b.png",
+            art: "/art/scene-cha-2b.jpg",
             bubbles: [
               {
                 id: "cha-2b-c",
@@ -670,7 +670,7 @@ export const STORIES: Story[] = [
           {
             id: "cha-3a",
             scene: "walk-home",
-            art: "/art/scene-cha-3a.png",
+            art: "/art/scene-cha-3a.jpg",
             bubbles: [
               {
                 id: "cha-3a-c",
@@ -688,7 +688,7 @@ export const STORIES: Story[] = [
           {
             id: "cha-3b",
             scene: "towels",
-            art: "/art/scene-cha-3b.png",
+            art: "/art/scene-cha-3b.jpg",
             caption: "En la cocina, el mar se quedó en las botas.",
             bubbles: [
               {

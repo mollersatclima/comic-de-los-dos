@@ -318,8 +318,8 @@ function Setup({
               </div>
               <p className="font-comic text-sm text-ink/80 leading-snug">
                 {lang === "pt"
-                  ? "9 anos de idade! Rostinho doce e bochechas fofas, cabelo ondulado castanho, camiseta coral com estrelinhas e seu amigo Stitch sempre ao lado."
-                  : "¡9 años de edad! Carita dulce e infantil con mejillas suaves, pelo castaño ondulado, camiseta coral con estrellitas y su amigo Stitch siempre al lado."}
+                  ? "9 anos. De pé, a cabeça dela chega só até o cotovelo do Nicolas. Rosto redondo, pernas curtas, camiseta coral."
+                  : "9 años. De pie, su cabeza llega solo hasta el codo de Nicolas. Cara redonda, piernas cortas, camiseta coral."}
               </p>
             </div>
           </div>
@@ -346,12 +346,25 @@ function Setup({
               </div>
               <p className="font-comic text-sm text-ink/80 leading-snug">
                 {lang === "pt"
-                  ? "Pequeno alienígena azul travesso, esperto e leal. Ajuda Aynara e Nicolas nas aventuras, comendo biscoitos e guiando o caminho!"
-                  : "Pequeño alienígena azul travieso, listo y leal. ¡Ayuda a Aynara y Nicolas en todas sus aventuras, comiendo galletas y guiando el camino!"}
+                  ? "Do tamanho de um gato: de pé, a cabeça dele chega só ao joelho da Aynara. Companheiro azul, pequeno e leal."
+                  : "Del tamaño de un gato: de pie, su cabeza llega solo a la rodilla de Aynara. Compañero azul, pequeño y leal."}
               </p>
             </div>
           </div>
         </div>
+        <figure className="mt-6 overflow-hidden border-[3px] border-ink bg-white shadow-[4px_4px_0_#1b2a4a]">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/art/height-codo.jpg"
+            alt="Escala: la cabeza de Aynara llega al codo de Nicolas y Stitch es del tamaño de un gato"
+            className="h-auto w-full"
+          />
+          <figcaption className="px-4 py-3 font-comic text-sm text-ink/80">
+            {lang === "pt"
+              ? "Escala fixa em todas as histórias: a cabeça da Aynara no cotovelo do Nicolas, e o Stitch do tamanho de um gato."
+              : "Escala fija en todas las historias: la cabeza de Aynara en el codo de Nicolas, y Stitch del tamaño de un gato."}
+          </figcaption>
+        </figure>
       </section>
 
       <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)]">
